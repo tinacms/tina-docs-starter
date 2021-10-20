@@ -7,8 +7,7 @@ import FeaturesBlock from "../../blocks/features-block";
 import HeroBlock from "../../blocks/hero-block";
 import Callout from "../../blocks/callout-block";
 import ReactPlayer from "react-player/lazy";
-import { LoadingContent } from "../../components/LoadingContent";
-
+import Page404 from "../404.js"
 const components = {
   Callout: (props) => {
     return <Callout callout={props} />;
@@ -45,7 +44,7 @@ export default function DocPage(props) {
     );
   } else{
     return (
-      <LoadingContent/>
+      <Page404/>
     )
   }
 }
