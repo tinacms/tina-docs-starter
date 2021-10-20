@@ -1,0 +1,286 @@
+{
+  "collections": [
+    {
+      "label": "Documentation",
+      "format": "mdx",
+      "name": "docs",
+      "path": "docs",
+      "fields": [
+        {
+          "type": "string",
+          "label": "Title",
+          "name": "title"
+        },
+        {
+          "type": "string",
+          "label": "Slug",
+          "name": "slug"
+        },
+        {
+          "type": "rich-text",
+          "label": "Body",
+          "name": "body",
+          "templates": [
+            {
+              "name": "Callout",
+              "label": "Callout",
+              "fields": [
+                {
+                  "name": "type",
+                  "label": "Type",
+                  "type": "string",
+                  "options": [
+                    "default",
+                    "warning",
+                    "error"
+                  ],
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Callout",
+                    "type"
+                  ]
+                },
+                {
+                  "name": "text",
+                  "label": "Text",
+                  "type": "string",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Callout",
+                    "text"
+                  ]
+                }
+              ],
+              "namespace": [
+                "docs",
+                "body",
+                "Callout"
+              ]
+            },
+            {
+              "name": "Button",
+              "label": "Button",
+              "fields": [
+                {
+                  "name": "type",
+                  "label": "Type",
+                  "type": "string",
+                  "options": [
+                    "primary",
+                    "success",
+                    "danger",
+                    "neutral"
+                  ],
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Button",
+                    "type"
+                  ]
+                },
+                {
+                  "name": "text",
+                  "label": "Text",
+                  "type": "string",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Button",
+                    "text"
+                  ]
+                }
+              ],
+              "namespace": [
+                "docs",
+                "body",
+                "Button"
+              ]
+            },
+            {
+              "name": "VideoPlayer",
+              "label": "VideoPlayer",
+              "fields": [
+                {
+                  "name": "url",
+                  "label": "Video URL",
+                  "type": "string",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "VideoPlayer",
+                    "url"
+                  ]
+                }
+              ],
+              "namespace": [
+                "docs",
+                "body",
+                "VideoPlayer"
+              ]
+            },
+            {
+              "name": "Hero",
+              "label": "Hero",
+              "fields": [
+                {
+                  "name": "backgroundImageURL",
+                  "label": "Background Image",
+                  "type": "image",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Hero",
+                    "backgroundImageURL"
+                  ]
+                },
+                {
+                  "name": "slogan",
+                  "label": "Title",
+                  "type": "string",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Hero",
+                    "slogan"
+                  ]
+                },
+                {
+                  "name": "teaser",
+                  "label": "Teaser",
+                  "type": "string",
+                  "ui": {
+                    "component": "textarea"
+                  },
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Hero",
+                    "teaser"
+                  ]
+                },
+                {
+                  "name": "btnUrl",
+                  "label": "Button Url",
+                  "type": "string",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Hero",
+                    "btnUrl"
+                  ]
+                },
+                {
+                  "name": "btnTxt",
+                  "label": "Button Text",
+                  "type": "string",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Hero",
+                    "btnTxt"
+                  ]
+                }
+              ],
+              "namespace": [
+                "docs",
+                "body",
+                "Hero"
+              ]
+            },
+            {
+              "name": "FeatureSection",
+              "label": "Feature",
+              "fields": [
+                {
+                  "type": "object",
+                  "name": "featureList",
+                  "label": "Feature List",
+                  "list": true,
+                  "templates": [
+                    {
+                      "name": "Feature",
+                      "label": "feature",
+                      "fields": [
+                        {
+                          "name": "image",
+                          "label": "Feature Image",
+                          "type": "image",
+                          "namespace": [
+                            "docs",
+                            "body",
+                            "FeatureSection",
+                            "featureList",
+                            "Feature",
+                            "image"
+                          ]
+                        },
+                        {
+                          "name": "title",
+                          "label": "Feature Title",
+                          "type": "string",
+                          "namespace": [
+                            "docs",
+                            "body",
+                            "FeatureSection",
+                            "featureList",
+                            "Feature",
+                            "title"
+                          ]
+                        },
+                        {
+                          "name": "desc",
+                          "label": "Feature Text",
+                          "type": "string",
+                          "ui": {
+                            "component": "textarea"
+                          },
+                          "namespace": [
+                            "docs",
+                            "body",
+                            "FeatureSection",
+                            "featureList",
+                            "Feature",
+                            "desc"
+                          ]
+                        }
+                      ],
+                      "namespace": [
+                        "docs",
+                        "body",
+                        "FeatureSection",
+                        "featureList",
+                        "Feature"
+                      ]
+                    }
+                  ],
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "FeatureSection",
+                    "featureList"
+                  ]
+                }
+              ],
+              "namespace": [
+                "docs",
+                "body",
+                "FeatureSection"
+              ]
+            }
+          ],
+          "isBody": true,
+          "namespace": [
+            "docs",
+            "body"
+          ]
+        }
+      ],
+      "namespace": [
+        "docs"
+      ]
+    }
+  ],
+  "namespace": []
+}

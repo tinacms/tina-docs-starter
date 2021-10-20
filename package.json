@@ -1,8 +1,8 @@
 {
-  "name": "next-smooth-doc",
-  "author": "lwz7512@gmail.com",
+  "name": "tina-docs-example",
+  "author": "TinaCMS",
   "version": "1.0.0",
-  "description": "A minimal doc generator based on Next.js & mdx.",
+  "description": "A minimal doc generator based on Next.js & mdx with TIna",
   "scripts": {
     "dev": "next",
     "dev:watch": "next-remote-watch ./docs",
