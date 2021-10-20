@@ -51,7 +51,6 @@ export default function DocPage(props) {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const slug =  params.slug.join('/')
   const sideNavFiles = await staticRequest({
     query: `#graphql
       {
@@ -85,7 +84,7 @@ export const getStaticProps = async ({ params }) => {
         }
       }
     `,
-    variables: { relativePath: `${slug}.mdx` },
+    variables: { relativePath: `${params.slug}.mdx` },
   });
   return {
     props: {
@@ -96,28 +95,25 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const docsListData = await staticRequest({
+  const docsListData = (await staticRequest({
     query: `#graphql
       {
         getDocsList {
           edges {
             node {
-              data{
-                slug
+              sys {
+                filename
               }
             }
           }
         }
       }
-    `,
-    variables: {},
-  });
-  docsListData.getDocsList.edges.map((doc) => {
-    console.log(doc.node.data.slug);
-  })
+    `,    variables: {},
+  }))
   return {
-    paths: docsListData.getDocsList.edges.map((doc) => ({
-      params: { slug: doc.node.data.slug.split('/')},
+    paths: docsListData.getDocsList.edges.map(doc => ({
+      
+      params: { slug: doc.node.sys.filename },
     })),
     fallback: "blocking",
   };

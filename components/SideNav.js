@@ -21,14 +21,6 @@ const NavGroupTitle = styled.h3`
   text-transform: uppercase;
   margin: 0 0 3 0;
 `
-const NavGroupSub = styled.h4`
-  font-size: 14;
-  font-weight: 500;
-  color: on-background-light;
-  text-transform: uppercase;
-  margin: 0 0 3 1;
-`
-
 const NavGroupMenu = styled.ul`
   margin: 0 0 0 2;
   padding: 0;
@@ -87,7 +79,6 @@ export default function SideNav({ navGroups }) {
       {navGroups.map((navGroup, index) => (
         <NavGroup key={index}>
           <NavGroupTitle>{navGroup.section}</NavGroupTitle>
-          <NavGroupSub>{navGroup.subsection}</NavGroupSub>
           <NavGroupMenu>
             {navGroup.children.map((page) => (
               <NavGroupMenuItem key={page.title}>

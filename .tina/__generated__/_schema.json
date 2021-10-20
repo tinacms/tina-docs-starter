@@ -9,12 +9,20 @@
         {
           "type": "string",
           "label": "Title",
-          "name": "title"
+          "name": "title",
+          "namespace": [
+            "docs",
+            "title"
+          ]
         },
         {
           "type": "string",
           "label": "Slug",
-          "name": "slug"
+          "name": "slug",
+          "namespace": [
+            "docs",
+            "slug"
+          ]
         },
         {
           "type": "rich-text",
