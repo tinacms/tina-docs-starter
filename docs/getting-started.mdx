@@ -3,64 +3,127 @@ title: Getting Started
 slug: /docs/getting-started/
 ---
 
-# Overview
+# Getting Started with Tina and MDX
 
-Getting started with Smooth DOC.
+A Quick overview of how Tina and MDX works. 
 
-## What is Smooth DOC?
+## Create components
 
-Smooth DOC is a ready-to-use [Gatsby](https://gatsbyjs.com/) theme to create a documentation website like this one. Creating a pro-quality website like this one takes weeks. Smooth DOC saves you lot of time and lets you focus on the content.
+Create any components you would like to use inside your MDX file, for example here is a callout using styled components
 
-## Why I created it?
+```javascript
+import styled from 'styled-components';
+import rem from "../utils/rem";
 
-As the maintainer of large libraries such as [SVGR](https://react-svgr.com/), [Loadable Components](https://loadable-components.com/) or [xstyled](https://xstyled.dev/), I had to create lot of documentation websites.
+export const SubHeader = styled.h3`
+color: rgb(120,120,120);
+  display: block;
+  margin: 2em 0 0.75em;
+  font-size: ${rem(24)};
+  font-weight: 600;
+`;
+export const Title = styled.h1`
+  display: block;
+  text-align: left;
+  width: 100%;
+  color: rgb(120,120,120);
+  font-size: ${rem(42)};
+  font-weight: bold;
+`;
 
-I quickly created a system to be able to generate these many sites. At this time, Gatsby was still in boxes and other tools were not flexible enough for me.
+export const CalloutWrapper = styled.div`
+  background:  ${props => props.type || "rgba(255,250,240,1)"};
+  padding: ${rem(7)} ${rem(10)} ${rem(5)} ${rem(14)};
+  border-left: ${rem(4)} solid rgb(220,220,220);
+  
+  margin: ${rem(45)} 0;
+  border-radius: ${rem(3)};
+  > p {
+    margin: 0 0 ${rem(5)} 0;
+  }
+  ${SubHeader} + &, ${Title} + & {
+    margin-top: ${rem(35)};
+  }
+`;
 
-Initially Smooth DOC was just a utility library to share common React components. Over the years, I added more and more features: Carbon Ads, React Live Editor, Dark Mode, SEO...
-
-Converting it into a Gatsby theme made it very portable and reusable. After a big work of refactoring, Smooth DOC was born!
-
-## What are the differences with other documentation generators?
-
-Smooth DOC is opinionated, it generates a pro-quality documentation website with a minimal configuration.
-
-It includes many features:
-
-*   MDX Support
-*   React Live Editor
-*   Full theme customization
-*   Dark mode support
-*   GitHub Links
-*   Social Image Sharing
-*   Carbon Ads support
-*   Netlify deployment
-*   Table of contents
-*   Built-in components
-*   Sitemap support
-*   ..and many other features!
-
-All of these features make Smooth DOC the most advanced documentation system.
-
-## Personalize options
-
-Smooth DOC options are filled directly in gatsby-config.js. To make it yours, fill name, description and siteUrl:
-
-```js
-module.exports = {
-  plugins: [
-    {
-      resolve: 'smooth-doc',
-      options: {
-        // Name of your website
-        name: 'Smooth DOC',
-        // Description of your website
-        description: 'Ready to use documentation theme for Gatsby.',
-        // Production URL of your website
-        siteUrl: 'https://smooth-doc.com',
-      },
-    },
-  ],
+const CalloutLabel = styled.strong`
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 100%;
+  margin-bottom: ${rem(7)};
+`;
+const CalloutText = styled.p`
+color: ${props => props.textColor || "rgba(156,66,33,1)"};
+font-weight: 500;
+font-size: 90%;
+`
+const backgroundColor = {
+    warning: "rgba(254,252,191,1)",
+    error: "rgba(254,215,215,1)",
+    default: "rgba(255,250,240,1)"
 }
+
+const textColor = {
+    warning: "rgba(116,66,16,1)",
+    error: "rgba(116,42,42,1)",
+    default: "rgba(156,66,33,1)"
+}
+
+const label = {
+   default: "Note" 
+}
+export default function Callout({callout}) {
+
+return(
+        
+  <CalloutWrapper type={backgroundColor[callout.type]} >
+    <CalloutLabel >{label[callout.type] || callout.type}</CalloutLabel>
+    <CalloutText textColor={textColor[callout.type] || textColor.default}>{callout?.text}</CalloutText>
+  </CalloutWrapper>
+    
+)}
+
+```
+
+### Add your components to your schema
+
+Your schema.ts found in the .tina directory needs the following things:
+
+1.  You need to use the rich-text type
+2.  You need to add the component to the schema
+3.  You need to add what parts you want to be able to edit.
+
+Here is the schema.ts file with the Callout component added:
+
+```typescript
+...
+{
+          type: "rich-text",
+          label: "Body",
+          name: "body",
+          templates: [
+            {
+              name: "Callout",
+              label: "Callout",
+              fields:[
+                {
+                  name: "type",
+                  label: "Type",
+                  type: "string",
+                  options: ["default", "warning", "error"],
+                },
+                {
+                  name: "text",
+                  label: "Text",
+                  type: "string",
+                },
+              ]
+            },
+          ],
+          ],
+          isBody: true,
+},
+...
 ```
 
