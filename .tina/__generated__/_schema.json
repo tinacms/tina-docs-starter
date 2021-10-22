@@ -32,6 +32,12 @@
             {
               "name": "Callout",
               "label": "Callout",
+              "ui": {
+                "defaultItem": {
+                  "type": "default",
+                  "text": "Lorem ipsum dolor sit amet."
+                }
+              },
               "fields": [
                 {
                   "name": "type",
@@ -70,6 +76,12 @@
             {
               "name": "Button",
               "label": "Button",
+              "ui": {
+                "defaultItem": {
+                  "type": "primary",
+                  "text": "Learn More"
+                }
+              },
               "fields": [
                 {
                   "name": "type",
@@ -131,6 +143,15 @@
             {
               "name": "Hero",
               "label": "Hero",
+              "ui": {
+                "defaultItem": {
+                  "backgroundImageUrl": "http://placehold.it/1200x800",
+                  "slogan": "Eat your food!",
+                  "teaser": "Lorem ipsum dolor sit amet.",
+                  "btnUrl": "https://tina.io",
+                  "btnTxt": "Learn More"
+                }
+              },
               "fields": [
                 {
                   "name": "backgroundImageURL",
@@ -200,66 +221,61 @@
             {
               "name": "FeatureSection",
               "label": "Feature",
+              "ui": {
+                "defaultItem": {
+                  "featureList": [
+                    {
+                      "image": "http://placehold.it/48x48",
+                      "title": "Hello, World",
+                      "desc": "Lorem ipsum dolor sit amet."
+                    }
+                  ]
+                }
+              },
               "fields": [
                 {
                   "type": "object",
                   "name": "featureList",
                   "label": "Feature List",
                   "list": true,
-                  "templates": [
+                  "fields": [
                     {
-                      "name": "Feature",
-                      "label": "feature",
-                      "fields": [
-                        {
-                          "name": "image",
-                          "label": "Feature Image",
-                          "type": "image",
-                          "namespace": [
-                            "docs",
-                            "body",
-                            "FeatureSection",
-                            "featureList",
-                            "Feature",
-                            "image"
-                          ]
-                        },
-                        {
-                          "name": "title",
-                          "label": "Feature Title",
-                          "type": "string",
-                          "namespace": [
-                            "docs",
-                            "body",
-                            "FeatureSection",
-                            "featureList",
-                            "Feature",
-                            "title"
-                          ]
-                        },
-                        {
-                          "name": "desc",
-                          "label": "Feature Text",
-                          "type": "string",
-                          "ui": {
-                            "component": "textarea"
-                          },
-                          "namespace": [
-                            "docs",
-                            "body",
-                            "FeatureSection",
-                            "featureList",
-                            "Feature",
-                            "desc"
-                          ]
-                        }
-                      ],
+                      "name": "image",
+                      "label": "Feature Image",
+                      "type": "image",
                       "namespace": [
                         "docs",
                         "body",
                         "FeatureSection",
                         "featureList",
-                        "Feature"
+                        "image"
+                      ]
+                    },
+                    {
+                      "name": "title",
+                      "label": "Feature Title",
+                      "type": "string",
+                      "namespace": [
+                        "docs",
+                        "body",
+                        "FeatureSection",
+                        "featureList",
+                        "title"
+                      ]
+                    },
+                    {
+                      "name": "desc",
+                      "label": "Feature Text",
+                      "type": "string",
+                      "ui": {
+                        "component": "textarea"
+                      },
+                      "namespace": [
+                        "docs",
+                        "body",
+                        "FeatureSection",
+                        "featureList",
+                        "desc"
                       ]
                     }
                   ],

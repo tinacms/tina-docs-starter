@@ -26,7 +26,13 @@ export default defineSchema({
             {
               name: "Callout",
               label: "Callout",
-              fields:[
+              ui: {
+                defaultItem: {
+                  type: "default",
+                  text: "Lorem ipsum dolor sit amet.",
+                },
+              },
+              fields: [
                 {
                   name: "type",
                   label: "Type",
@@ -38,11 +44,17 @@ export default defineSchema({
                   label: "Text",
                   type: "string",
                 },
-              ]
+              ],
             },
             {
               name: "Button",
               label: "Button",
+              ui: {
+                defaultItem: {
+                  type: "primary",
+                  text: "Learn More",
+                },
+              },
               fields: [
                 {
                   name: "type",
@@ -71,6 +83,15 @@ export default defineSchema({
             {
               name: "Hero",
               label: "Hero",
+              ui: {
+                defaultItem: {
+                  backgroundImageUrl: "http://placehold.it/1200x800",
+                  slogan: "Eat your food!",
+                  teaser: "Lorem ipsum dolor sit amet.",
+                  btnUrl: "https://tina.io",
+                  btnTxt: "Learn More",
+                },
+              },
               fields: [
                 {
                   name: "backgroundImageURL",
@@ -105,36 +126,41 @@ export default defineSchema({
             {
               name: "FeatureSection",
               label: "Feature",
+              ui: {
+                defaultItem: {
+                  featureList: [
+                    {
+                      image: "http://placehold.it/48x48",
+                      title: "Hello, World",
+                      desc: "Lorem ipsum dolor sit amet.",
+                    },
+                  ],
+                },
+              },
               fields: [
                 {
                   type: "object",
                   name: "featureList",
                   label: "Feature List",
                   list: true,
-                  templates: [
+                  fields: [
                     {
-                      name: "Feature",
-                      label: "feature",
-                      fields: [
-                        {
-                          name: "image",
-                          label: "Feature Image",
-                          type: "image",
-                        },
-                        {
-                          name: "title",
-                          label: "Feature Title",
-                          type: "string",
-                        },
-                        {
-                          name: "desc",
-                          label: "Feature Text",
-                          type: "string",
-                          ui: {
-                            component: "textarea",
-                          },
-                        },
-                      ],
+                      name: "image",
+                      label: "Feature Image",
+                      type: "image",
+                    },
+                    {
+                      name: "title",
+                      label: "Feature Title",
+                      type: "string",
+                    },
+                    {
+                      name: "desc",
+                      label: "Feature Text",
+                      type: "string",
+                      ui: {
+                        component: "textarea",
+                      },
                     },
                   ],
                 },
