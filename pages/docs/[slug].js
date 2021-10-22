@@ -7,7 +7,7 @@ import FeaturesBlock from "../../blocks/features-block";
 import HeroBlock from "../../blocks/hero-block";
 import Callout from "../../blocks/callout-block";
 import ReactPlayer from "react-player/lazy";
-import Page404 from "../404.js"
+import Page404 from "../404.js";
 const components = {
   Callout: (props) => {
     return <Callout callout={props} />;
@@ -30,7 +30,7 @@ const components = {
   },
 };
 
-export default function DocPage(props) {
+function DocPage(props) {
   if (props.data && props.data.getDocsDocument) {
     return (
       <DocLayout
@@ -42,12 +42,11 @@ export default function DocPage(props) {
         </TinaMarkdown>
       </DocLayout>
     );
-  } else{
-    return (
-      <Page404/>
-    )
+  } else {
+    return <Page404 />;
   }
 }
+export default DocPage;
 
 export const getStaticProps = async ({ params }) => {
   const sideNavFiles = await staticRequest({
@@ -94,7 +93,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const docsListData = (await staticRequest({
+  const docsListData = await staticRequest({
     query: `#graphql
       {
         getDocsList {
@@ -107,11 +106,11 @@ export const getStaticPaths = async () => {
           }
         }
       }
-    `,    variables: {},
-  }))
+    `,
+    variables: {},
+  });
   return {
-    paths: docsListData.getDocsList.edges.map(doc => ({
-      
+    paths: docsListData.getDocsList.edges.map((doc) => ({
       params: { slug: doc.node.sys.filename },
     })),
     fallback: "blocking",
