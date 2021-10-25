@@ -6,6 +6,11 @@ module.exports = {
         destination: '/docs/getting-started',
         permanent: true,
       },
+      {
+        source: '/docs',
+        destination: '/docs/getting-started',
+        permanent: true,
+      },
     ]
   },
   trailingSlash: true,
