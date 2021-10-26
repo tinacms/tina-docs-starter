@@ -1819,10 +1819,10 @@
     ws "^7.3.1"
     yup "^0.32.9"
 
-"@tinacms/toolkit@0.55.0":
-  version "0.55.0"
-  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.55.0.tgz#97613a16f1f3b4afffff3a7035bda07bcb1d6710"
-  integrity sha512-sD6Utsmzl5//wqi3Jit1NnZnr71x+aSzT6qaUhZiTqY+fpXEG+YdNe/aGSFLjlm9KsUUw+AsxcfJ802i+aK+1A==
+"@tinacms/toolkit@0.55.1":
+  version "0.55.1"
+  resolved "https://registry.yarnpkg.com/@tinacms/toolkit/-/toolkit-0.55.1.tgz#04efc42dd815cb79fa1fbe0837f25ecc54d8d096"
+  integrity sha512-UODl9CBhAieDVG2HdFn9x1+93vbQmVET0CedmsatS+WPXm4sR3Tdt6+sxkH5fP6VzW3JToZKUMoLVcfz0yGSlw==
   dependencies:
     "@sambego/storybook-styles" "^1.0.0"
     "@types/atob" "^2.1.2"
@@ -3456,9 +3456,9 @@ aws-appsync-subscription-link@^3.0.3:
     url "^0.11.0"
 
 aws-sdk@*, aws-sdk@^2.930.0:
-  version "2.1014.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1014.0.tgz#b08bf963bee7256dd08a275f89fe5f1b67a735ba"
-  integrity sha512-QqxCSJ0egEUaI9gnYNybCdSCtP1HvgzInYo/MuOalXp+7cOuxG5OoN3KAjIEw6JmH2IiB9NGSKJZY6D0F4hJoQ==
+  version "2.1015.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1015.0.tgz#fc69c0620a34c1d77173123769fbc725d867b3cc"
+  integrity sha512-jSM955n08r+kzCMMhOu1Dbua8SRZQKgGO1nAoUwBSlXjnLtN+F81P93h4yNBtWsxUg1mAMTP3DKJjXFFrRToPw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -9015,9 +9015,9 @@ next-tick@~1.0.0:
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
 next-tinacms-cloudinary@^3.3.1:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/next-tinacms-cloudinary/-/next-tinacms-cloudinary-3.3.2.tgz#04f3e952fc57c58945acaa2b96b4b3fec9250405"
-  integrity sha512-6ESOCyAf/4h94XC347ofxkA/1CG5r6Sp0YmlNvT4hvb49wCicG5sgBMjdq3yAvrgtpSJuhyArs4a3x8pm4TRYA==
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/next-tinacms-cloudinary/-/next-tinacms-cloudinary-3.3.3.tgz#9ab82495a1261f32760f1ff68ef6f30fe117eb08"
+  integrity sha512-XlqdwmEAb91sINkW994o9y346rdHDextg7ZSWSq6tMWAxik2yJNJ/yLOOff35d49RnlDVqB6PNhd+XhG2tYQWw==
   dependencies:
     cloudinary "^1.25.2"
     multer "^1.4.2"
@@ -12372,17 +12372,17 @@ timsort@^0.3.0:
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
-tinacms@^0.57.0:
-  version "0.57.0"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.57.0.tgz#59271ccd1df71019efe31577be2542a8e1e00588"
-  integrity sha512-s6c1UczXHyJgit6nwX0E5zBRbNcUGCOs1xgfoNQzeJOs9OhThTbN2KB/piLzIQTTdvGBSDi2iG/1zboo759V9A==
+tinacms@^0.57.1:
+  version "0.57.1"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.57.1.tgz#630aaaa05b78547232db6feadda8abbe3af671a2"
+  integrity sha512-+xpczl8CdtuEw3esRaLovW3pzAraztvpPej/rZHN3gdaQXAcjvjLLPRtdrocNr24KQWmvqhjNjzvHK5qxj6HcQ==
   dependencies:
     "@graphql-codegen/core" "^1.15.4"
     "@graphql-codegen/typescript" "^1.15.4"
     "@graphql-codegen/typescript-operations" "^1.15.4"
     "@headlessui/react" "^1.4.1"
     "@heroicons/react" "^1.0.4"
-    "@tinacms/toolkit" "0.55.0"
+    "@tinacms/toolkit" "0.55.1"
     "@xstate/react" "^1.1.0"
     codemirror "^5.55.0"
     cors "^2.8.5"
