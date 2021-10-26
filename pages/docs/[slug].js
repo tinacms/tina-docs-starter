@@ -14,7 +14,7 @@ const components = {
   },
   Button: (props) => {
     return (
-      <Button as="a" href="https://tina.io" variant={props.type}>
+      <Button as="a" href={props.url} variant={props.type}>
         {props.text}
       </Button>
     );

@@ -79,7 +79,8 @@
               "ui": {
                 "defaultItem": {
                   "type": "primary",
-                  "text": "Learn More"
+                  "text": "Learn More",
+                  "url": "https://tina.io"
                 }
               },
               "fields": [
@@ -109,6 +110,17 @@
                     "body",
                     "Button",
                     "text"
+                  ]
+                },
+                {
+                  "name": "url",
+                  "label": "Url",
+                  "type": "string",
+                  "namespace": [
+                    "docs",
+                    "body",
+                    "Button",
+                    "url"
                   ]
                 }
               ],

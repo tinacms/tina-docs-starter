@@ -53,6 +53,7 @@ export default defineSchema({
                 defaultItem: {
                   type: "primary",
                   text: "Learn More",
+                  url:"https://tina.io"
                 },
               },
               fields: [
@@ -65,6 +66,11 @@ export default defineSchema({
                 {
                   name: "text",
                   label: "Text",
+                  type: "string",
+                },
+                {
+                  name: "url",
+                  label: "Url",
                   type: "string",
                 },
               ],
