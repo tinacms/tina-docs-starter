@@ -7,7 +7,7 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/docs',
+        source: '/docs/',
         destination: '/docs/getting-started',
         permanent: true,
       },
