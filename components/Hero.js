@@ -98,7 +98,7 @@ export const HeroActionList = React.forwardRef((props, ref) => {
     <x.div
       ref={ref}
       row
-      m={-2}
+      m={2}
       justifyContent={{ xs: "center", md: "initial" }}
       {...props}
     />
@@ -106,5 +106,5 @@ export const HeroActionList = React.forwardRef((props, ref) => {
 });
 
 export const HeroAction = React.forwardRef((props, ref) => {
-  return <x.div ref={ref} col="auto" p={2} {...props} />;
+  return <x.div ref={ref} col="auto" p={2}  {...props} />;
 });

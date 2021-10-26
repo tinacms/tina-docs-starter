@@ -199,18 +199,6 @@ export default function DocLayout({ children, tableOfContents, editLink, navGrou
           <x.div pb={6} px={3}>
             <Article>
               {children}
-              {editLink && (
-                <x.a
-                  mt={5}
-                  display="grid"
-                  gridTemplateColumns="min-content max-content"
-                  gridGap={1}
-                  alignItems="center"
-                  href={editLink}
-                >
-                  <RiPencilLine /> Edit this page on GitHub
-                </x.a>
-              )}
               <PrevNextLinks {...sideNav} />
             </Article>
           </x.div>
