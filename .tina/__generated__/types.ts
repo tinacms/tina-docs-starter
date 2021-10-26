@@ -49,6 +49,8 @@ export type Node = {
 export type Document = {
   sys?: Maybe<SystemInfo>;
   id: Scalars['ID'];
+  form: Scalars['JSON'];
+  values: Scalars['JSON'];
 };
 
 /** A relay-compliant pagination connection */
@@ -63,6 +65,7 @@ export type Query = {
   node: Node;
   getDocument: DocumentNode;
   getDocumentList: DocumentConnection;
+  getDocumentFields: Scalars['JSON'];
   getDocsDocument: DocsDocument;
   getDocsList: DocsConnection;
 };
@@ -174,7 +177,9 @@ export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
   updateDocument: DocumentNode;
+  createDocument: DocumentNode;
   updateDocsDocument: DocsDocument;
+  createDocsDocument: DocsDocument;
 };
 
 
@@ -192,7 +197,20 @@ export type MutationUpdateDocumentArgs = {
 };
 
 
+export type MutationCreateDocumentArgs = {
+  collection: Scalars['String'];
+  relativePath: Scalars['String'];
+  params: DocumentMutation;
+};
+
+
 export type MutationUpdateDocsDocumentArgs = {
+  relativePath: Scalars['String'];
+  params: DocsMutation;
+};
+
+
+export type MutationCreateDocsDocumentArgs = {
   relativePath: Scalars['String'];
   params: DocsMutation;
 };

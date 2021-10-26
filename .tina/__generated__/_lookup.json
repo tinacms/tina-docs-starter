@@ -12,7 +12,9 @@
   },
   "DocumentNode": {
     "type": "DocumentNode",
-    "resolveType": "multiCollectionDocument"
+    "resolveType": "multiCollectionDocument",
+    "createDocument": "create",
+    "updateDocument": "update"
   },
   "PostsDocument": {
     "type": "PostsDocument",
@@ -27,7 +29,9 @@
   "DocsDocument": {
     "type": "DocsDocument",
     "resolveType": "collectionDocument",
-    "collection": "docs"
+    "collection": "docs",
+    "createDocsDocument": "create",
+    "updateDocsDocument": "update"
   },
   "DocsConnection": {
     "type": "DocsConnection",

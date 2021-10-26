@@ -37,9 +37,7 @@ function DocPage(props) {
         title={props.data.getDocsDocument.data.title}
         navGroups={props.sideNav}
       >
-        <TinaMarkdown components={components}>
-          {props.data.getDocsDocument.data.body}
-        </TinaMarkdown>
+        <TinaMarkdown components={components} content={props.data.getDocsDocument.data.body}/>
       </DocLayout>
     );
   } else {

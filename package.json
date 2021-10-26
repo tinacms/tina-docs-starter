@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@tinacms/auth": "^0.50.1",
-    "@tinacms/cli": "^0.0.0-2021911175323",
+    "@tinacms/cli": "^0.56.4",
     "@xstyled/styled-components": "^3.0.0",
     "gray-matter": "^4.0.2",
-    "next": "latest",
+    "next": "10.0.5",
     "next-mdx-remote": "^3.0.1",
     "next-remote-watch": "1.0.0",
     "next-tinacms-cloudinary": "^3.3.1",
@@ -30,7 +30,7 @@
     "remark": "13.0.0",
     "remark-html": "13.0.1",
     "styled-components": "^5.3.3",
-    "tinacms": "^0.0.0-2021911175323"
+    "tinacms": "^0.57.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",
