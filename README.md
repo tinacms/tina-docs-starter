@@ -58,11 +58,6 @@ TinaCMS backend is in public beta, you might face issues, to provide feedback or
 
 [Install the GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) to benefit from type auto-completion.
 
-### Typescript
-
-A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
-These are rebuilt when your `.tina` config changes.
-
 ## LICENSE
 
 Licensed under the [MIT License](./LICENSE).
