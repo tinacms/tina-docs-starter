@@ -9,14 +9,14 @@
     "start": "yarn tinacms server:start -c \"next start\""
   },
   "dependencies": {
-    "@tinacms/auth": "latest",
-    "@tinacms/cli": "latest",
+    "@tinacms/auth": "^0.50.1",
+    "@tinacms/cli": "^0.56.4",
     "@xstyled/styled-components": "^3.0.0",
     "gray-matter": "^4.0.2",
     "next": "10.0.5",
     "next-mdx-remote": "^3.0.1",
     "next-remote-watch": "1.0.0",
-    "next-tinacms-cloudinary": "latest",
+    "next-tinacms-cloudinary": "^3.3.4",
     "polished": "^4.1.2",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",
@@ -30,7 +30,7 @@
     "remark": "13.0.0",
     "remark-html": "13.0.1",
     "styled-components": "^5.3.3",
-    "tinacms": "latest"
+    "tinacms": "^0.57.3"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",

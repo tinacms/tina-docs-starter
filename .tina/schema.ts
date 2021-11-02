@@ -91,7 +91,7 @@ export default defineSchema({
               label: "Hero",
               ui: {
                 defaultItem: {
-                  backgroundImageUrl: "http://placehold.it/1200x800",
+                  backgroundImageUrl: "https://res.cloudinary.com/tina-demos/image/upload/v1634760332/flyingTina_dfh69x.png",
                   slogan: "Eat your food!",
                   teaser: "Lorem ipsum dolor sit amet.",
                   btnUrl: "https://tina.io",
@@ -100,7 +100,7 @@ export default defineSchema({
               },
               fields: [
                 {
-                  name: "backgroundImageURL",
+                  name: "backgroundImageUrl",
                   label: "Background Image",
                   type: "image",
                 },
