@@ -1,5 +1,5 @@
 import DocLayout from "../../components/DocLayout";
-import { staticRequest, getStaticPropsForTina } from "tinacms";
+import { getStaticPropsForTina } from "tinacms";
 import { sideMenuItems } from "../../utils/mdxUtils";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Button } from "../../components";
@@ -32,10 +32,11 @@ const components = {
 
 function DocPage(props) {
   if (props.data && props.data.getDocsDocument) {
+    const sideNav = sideMenuItems(props.data);
     return (
       <DocLayout
         title={props.data.getDocsDocument.data.title}
-        navGroups={props.sideNav}
+        navGroups={sideNav}
       >
         <TinaMarkdown components={components} content={props.data.getDocsDocument.data.body}/>
       </DocLayout>
@@ -47,9 +48,16 @@ function DocPage(props) {
 export default DocPage;
 
 export const getStaticProps = async ({ params }) => {
-  const sideNavFiles = await staticRequest({
+  const tinaProps = await getStaticPropsForTina({
     query: `#graphql
-      {
+      query DocumentQuery($relativePath: String!) {
+        getDocsDocument(relativePath: $relativePath) {
+          data {
+            title
+            slug
+            body
+          }
+        }
         getDocsList {
           edges {
             node {
@@ -65,33 +73,18 @@ export const getStaticProps = async ({ params }) => {
         }
       }
     `,
-    variables: {},
-  });
-  const sideNav = sideMenuItems(sideNavFiles);
-  const tinaProps = await getStaticPropsForTina({
-    query: `#graphql
-      query DocumentQuery($relativePath: String!) {
-        getDocsDocument(relativePath: $relativePath) {
-          data {
-            title
-            slug
-            body
-          }
-        }
-      }
-    `,
     variables: { relativePath: `${params.slug}.mdx` },
   });
+ 
   return {
     props: {
       ...tinaProps,
-      sideNav,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const docsListData = await staticRequest({
+  const docsListData = await getStaticPropsForTina({
     query: `#graphql
       {
         getDocsList {
@@ -108,7 +101,7 @@ export const getStaticPaths = async () => {
     variables: {},
   });
   return {
-    paths: docsListData.getDocsList.edges.map((doc) => ({
+    paths: docsListData.data.getDocsList.edges.map((doc) => ({
       params: { slug: doc.node.sys.filename },
     })),
     fallback: "blocking",
