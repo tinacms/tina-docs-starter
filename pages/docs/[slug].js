@@ -101,9 +101,9 @@ export const getStaticPaths = async () => {
     variables: {},
   });
   return {
-    paths: docsListData.data.getDocsList.edges.map((doc) => ({
+    paths: docsListData?.data?.getDocsList?.edges?.map((doc) => ({
       params: { slug: doc.node.sys.filename },
-    })),
+    })) || [],
     fallback: "blocking",
   };
 };
