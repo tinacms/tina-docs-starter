@@ -1,5 +1,5 @@
 import DocLayout from "../../components/DocLayout";
-import { staticRequest, getStaticPropsForTina } from "tinacms";
+import { staticRequest, gql } from "tinacms";
 import { sideMenuItems } from "../../utils/mdxUtils";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Button } from "../../components";
@@ -32,12 +32,16 @@ const components = {
 
 function DocPage(props) {
   if (props.data && props.data.getDocsDocument) {
+    const sideNav = sideMenuItems(props.data);
     return (
       <DocLayout
         title={props.data.getDocsDocument.data.title}
-        navGroups={props.sideNav}
+        navGroups={sideNav}
       >
-        <TinaMarkdown components={components} content={props.data.getDocsDocument.data.body}/>
+        <TinaMarkdown
+          components={components}
+          content={props.data.getDocsDocument.data.body}
+        />
       </DocLayout>
     );
   } else {
@@ -47,45 +51,48 @@ function DocPage(props) {
 export default DocPage;
 
 export const getStaticProps = async ({ params }) => {
-  const sideNavFiles = await staticRequest({
-    query: `#graphql
-      {
-        getDocsList {
-          edges {
-            node {
-              data{
-                title
-                slug
-              }
-              sys {
-                path
-           }
+  const query = gql`
+    query DocumentQuery($relativePath: String!) {
+      getDocsDocument(relativePath: $relativePath) {
+        data {
+          title
+          slug
+          body
+        }
+      }
+      getDocsList {
+        edges {
+          node {
+            data {
+              title
+              slug
+            }
+            sys {
+              path
             }
           }
         }
       }
-    `,
-    variables: {},
-  });
-  const sideNav = sideMenuItems(sideNavFiles);
-  const tinaProps = await getStaticPropsForTina({
-    query: `#graphql
-      query DocumentQuery($relativePath: String!) {
-        getDocsDocument(relativePath: $relativePath) {
-          data {
-            title
-            slug
-            body
-          }
-        }
-      }
-    `,
-    variables: { relativePath: `${params.slug}.mdx` },
-  });
+    }
+  `;
+
+  const variables = { relativePath: `${params.slug}.mdx` };
+
+  let data = {};
+  try {
+    data = await staticRequest({
+      query,
+      variables,
+    });
+  } catch (error) {
+    // swallow errors related to document creation
+  }
+
   return {
     props: {
-      ...tinaProps,
-      sideNav,
+      query,
+      variables,
+      data,
     },
   };
 };
@@ -108,9 +115,10 @@ export const getStaticPaths = async () => {
     variables: {},
   });
   return {
-    paths: docsListData.getDocsList.edges.map((doc) => ({
-      params: { slug: doc.node.sys.filename },
-    })),
+    paths:
+      docsListData?.getDocsList?.edges?.map((doc) => ({
+        params: { slug: doc.node.sys.filename },
+      })) || [],
     fallback: "blocking",
   };
 };
