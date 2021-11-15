@@ -1,5 +1,5 @@
 import DocLayout from "../../components/DocLayout";
-import { getStaticPropsForTina } from "tinacms";
+import { staticRequest, gql } from "tinacms";
 import { sideMenuItems } from "../../utils/mdxUtils";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Button } from "../../components";
@@ -38,7 +38,10 @@ function DocPage(props) {
         title={props.data.getDocsDocument.data.title}
         navGroups={sideNav}
       >
-        <TinaMarkdown components={components} content={props.data.getDocsDocument.data.body}/>
+        <TinaMarkdown
+          components={components}
+          content={props.data.getDocsDocument.data.body}
+        />
       </DocLayout>
     );
   } else {
@@ -48,43 +51,54 @@ function DocPage(props) {
 export default DocPage;
 
 export const getStaticProps = async ({ params }) => {
-  const tinaProps = await getStaticPropsForTina({
-    query: `#graphql
-      query DocumentQuery($relativePath: String!) {
-        getDocsDocument(relativePath: $relativePath) {
-          data {
-            title
-            slug
-            body
-          }
+  const query = gql`
+    query DocumentQuery($relativePath: String!) {
+      getDocsDocument(relativePath: $relativePath) {
+        data {
+          title
+          slug
+          body
         }
-        getDocsList {
-          edges {
-            node {
-              data{
-                title
-                slug
-              }
-              sys {
-                path
-           }
+      }
+      getDocsList {
+        edges {
+          node {
+            data {
+              title
+              slug
+            }
+            sys {
+              path
             }
           }
         }
       }
-    `,
-    variables: { relativePath: `${params.slug}.mdx` },
-  });
- 
+    }
+  `;
+
+  const variables = { relativePath: `${params.slug}.mdx` };
+
+  let data = {};
+  try {
+    data = await staticRequest({
+      query,
+      variables,
+    });
+  } catch (error) {
+    // swallow errors related to document creation
+  }
+
   return {
     props: {
-      ...tinaProps,
+      query,
+      variables,
+      data,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const docsListData = await getStaticPropsForTina({
+  const docsListData = await staticRequest({
     query: `#graphql
       {
         getDocsList {
@@ -101,9 +115,10 @@ export const getStaticPaths = async () => {
     variables: {},
   });
   return {
-    paths: docsListData?.data?.getDocsList?.edges?.map((doc) => ({
-      params: { slug: doc.node.sys.filename },
-    })) || [],
+    paths:
+      docsListData?.getDocsList?.edges?.map((doc) => ({
+        params: { slug: doc.node.sys.filename },
+      })) || [],
     fallback: "blocking",
   };
 };
