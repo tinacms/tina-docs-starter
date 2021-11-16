@@ -19,6 +19,11 @@ export default defineSchema({
           name: "slug",
         },
         {
+          type: "string",
+          label: "Section",
+          name: "section",
+        },
+        {
           type: "rich-text",
           label: "Body",
           name: "body",
