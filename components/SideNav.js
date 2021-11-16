@@ -67,7 +67,7 @@ const NavLink = ({ children, href }) => {
   return (
     <Link href={href}>
       {React.cloneElement(child, {
-        "aria-current": trim(router.asPath) === href ? "page" : null
+        "aria-current": trim(router.asPath) === trim(href) ? "page" : null
       })}
     </Link>
   );
