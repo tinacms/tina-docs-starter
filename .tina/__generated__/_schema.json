@@ -25,6 +25,15 @@
           ]
         },
         {
+          "type": "string",
+          "label": "Section",
+          "name": "section",
+          "namespace": [
+            "docs",
+            "section"
+          ]
+        },
+        {
           "type": "rich-text",
           "label": "Body",
           "name": "body",

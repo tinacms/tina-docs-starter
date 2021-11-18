@@ -66,6 +66,7 @@ export const getStaticProps = async ({ params }) => {
             data {
               title
               slug
+              section
             }
             sys {
               path

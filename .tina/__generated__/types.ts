@@ -147,6 +147,7 @@ export type Docs = {
   __typename?: 'Docs';
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
+  section?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['JSON']>;
 };
 
@@ -222,6 +223,7 @@ export type DocumentMutation = {
 export type DocsMutation = {
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
+  section?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['JSON']>;
 };
 
