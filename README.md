@@ -13,6 +13,7 @@ This Next.js starter is powered by TinaCMS and based upon [Smooth Doc](https://g
 - MDX component support for easy to use resuable components
 - Vercel deployment to visually edit your site from the /admin route.
 - Local development workflow from the filesystem with a local GraqhQL server.
+- Docs powered by https://docsearch.algolia.com/
 
   
 ## Requirements
@@ -40,6 +41,19 @@ yarn dev
 - http://localhost:3000/admin : connect to Tina Cloud and go in edit mode
 - http://localhost:3000/exit-admin : log out of Tina Cloud
 - http://localhost:4001/altair/ : GraphQL playground to test queries and browse the API documentation
+
+
+## Wanting to use Doc search?
+
+The first step is to apply for [Algolia DocSearch](https://docsearch.algolia.com/apply/). Once that is done you can update the `/config/siteMetadata.js` with the apiKey and Index.
+
+```json
+docSearch: {
+    apiKey: 'API_KEY',
+    indexName: 'INDEX_NAME',
+  },
+```
+Once you do that, search will appear in the header. 
 
 ## Getting Help
 
