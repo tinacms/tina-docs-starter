@@ -9,6 +9,7 @@
     "start": "yarn tinacms server:start -c \"next start\""
   },
   "dependencies": {
+    "@docsearch/react": "^3.0.0-alpha.41",
     "@tinacms/auth": "^0.50.1",
     "@tinacms/cli": "^0.56.4",
     "@xstyled/styled-components": "^3.0.0",

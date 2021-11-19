@@ -1,12 +1,9 @@
-import React from 'react'
-
 import styled, { x, down, css } from '@xstyled/styled-components'
 import { ScreenContainer } from './ScreenContainer'
 import { NavLink } from './Nav'
 import { AppNav } from './AppNav'
-
+import { DocSearch } from './DocSearch'
 import siteMetadata from '../config/siteMetadata'
-
 
 const OuterHeader = styled.header`
   background-color: background;
@@ -91,6 +88,11 @@ export function AppHeader() {
               )}
             </NavLink>
           </x.div>
+          {siteMetadata.docSearch.apiKey.length >1 ? (
+            <x.div col="auto" px={2} display={{ xs: 'none', md: 'block' }}>
+              <DocSearch {...siteMetadata.docSearch} />
+            </x.div>
+          ) : null}
           <AppNav col="auto" px={2} />
         </x.div>
       </ScreenContainer>

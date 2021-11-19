@@ -5,6 +5,10 @@ const siteMetadata = {
   socialImage: "/images/social.jpg",
   navItems: [{ title: "Docs", url: "/docs/" }],
   twitterAccount: "tina_cms",
+  docSearch: {
+    apiKey: '',
+    indexName: '',
+  },
   siteUrl: "https://tina.io",
   author: "TinaCMS",
 };
