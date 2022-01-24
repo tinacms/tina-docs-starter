@@ -1,0 +1,6 @@
+fragment DocsParts on Docs {
+  title
+  slug
+  section
+  body
+}

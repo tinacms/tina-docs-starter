@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@tinacms/auth": "^0.50.2",
-    "@tinacms/cli": "^0.58.5",
+    "@tinacms/cli": "^0.60.0",
     "@xstyled/styled-components": "^3.0.0",
     "gray-matter": "^4.0.2",
     "next": "^12.0.7",
@@ -31,7 +31,7 @@
     "remark": "13.0.0",
     "remark-html": "13.0.1",
     "styled-components": "^5.3.3",
-    "tinacms": "^0.62.0"
+    "tinacms": "^0.64.2"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",

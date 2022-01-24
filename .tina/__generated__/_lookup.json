@@ -16,16 +16,6 @@
     "createDocument": "create",
     "updateDocument": "update"
   },
-  "PostsDocument": {
-    "type": "PostsDocument",
-    "resolveType": "collectionDocument",
-    "collection": "posts"
-  },
-  "PostsConnection": {
-    "type": "PostsConnection",
-    "resolveType": "collectionDocumentList",
-    "collection": "posts"
-  },
   "DocsDocument": {
     "type": "DocsDocument",
     "resolveType": "collectionDocument",
@@ -37,15 +27,5 @@
     "type": "DocsConnection",
     "resolveType": "collectionDocumentList",
     "collection": "docs"
-  },
-  "GuidesDocument": {
-    "type": "GuidesDocument",
-    "resolveType": "collectionDocument",
-    "collection": "guides"
-  },
-  "GuidesConnection": {
-    "type": "GuidesConnection",
-    "resolveType": "collectionDocumentList",
-    "collection": "guides"
   }
 }

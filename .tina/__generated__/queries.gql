@@ -1,0 +1,38 @@
+query getDocsDocument($relativePath: String!) {
+  getDocsDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...DocsParts
+    }
+  }
+}
+
+query getDocsList {
+  getDocsList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...DocsParts
+        }
+      }
+    }
+  }
+}
