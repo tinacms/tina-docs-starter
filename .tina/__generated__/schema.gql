@@ -106,8 +106,8 @@ type DocsConnection implements Connection {
 
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
-  updateDocument(collection: String!, relativePath: String!, params: DocumentMutation!): DocumentNode!
-  createDocument(collection: String!, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updateDocsDocument(relativePath: String!, params: DocsMutation!): DocsDocument!
   createDocsDocument(relativePath: String!, params: DocsMutation!): DocsDocument!
 }
