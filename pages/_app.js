@@ -52,9 +52,8 @@ const App = ({ Component, pageProps }) => {
                   );
                 },
               }}
-              {...pageProps}
             >
-              {(livePageProps) => <Component {...livePageProps} />}
+              <Component {...pageProps} />
             </TinaCMS>
           }
         >
