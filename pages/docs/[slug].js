@@ -8,6 +8,34 @@ import HeroBlock from "../../blocks/hero-block";
 import Callout from "../../blocks/callout-block";
 import ReactPlayer from "react-player/lazy";
 import Page404 from "../404.js";
+import { useTina } from "tinacms/dist/edit-state";
+
+const query = gql`
+  query DocumentQuery($relativePath: String!) {
+    getDocsDocument(relativePath: $relativePath) {
+      data {
+        title
+        slug
+        body
+      }
+    }
+    getDocsList {
+      edges {
+        node {
+          data {
+            title
+            slug
+            section
+          }
+          sys {
+            path
+          }
+        }
+      }
+    }
+  }
+`;
+
 const components = {
   Callout: (props) => {
     return <Callout callout={props} />;
@@ -31,16 +59,19 @@ const components = {
 };
 
 function DocPage(props) {
-  if (props.data && props.data.getDocsDocument) {
-    const sideNav = sideMenuItems(props.data);
+  const { data } = useTina({
+    query,
+    variables: props.variables,
+    data: props.data,
+  });
+
+  if (data && data.getDocsDocument) {
+    const sideNav = sideMenuItems(data);
     return (
-      <DocLayout
-        title={props.data.getDocsDocument.data.title}
-        navGroups={sideNav}
-      >
+      <DocLayout title={data.getDocsDocument.data.title} navGroups={sideNav}>
         <TinaMarkdown
           components={components}
-          content={props.data.getDocsDocument.data.body}
+          content={data.getDocsDocument.data.body}
         />
       </DocLayout>
     );
@@ -51,32 +82,6 @@ function DocPage(props) {
 export default DocPage;
 
 export const getStaticProps = async ({ params }) => {
-  const query = gql`
-    query DocumentQuery($relativePath: String!) {
-      getDocsDocument(relativePath: $relativePath) {
-        data {
-          title
-          slug
-          body
-        }
-      }
-      getDocsList {
-        edges {
-          node {
-            data {
-              title
-              slug
-              section
-            }
-            sys {
-              path
-            }
-          }
-        }
-      }
-    }
-  `;
-
   const variables = { relativePath: `${params.slug}.mdx` };
 
   let data = {};
@@ -91,7 +96,6 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      query,
       variables,
       data,
     },
