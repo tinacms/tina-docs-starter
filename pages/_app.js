@@ -35,6 +35,14 @@ const App = ({ Component, pageProps }) => {
                 return pack.TinaCloudCloudinaryMediaStore;
               }}
               apiURL={apiURL}
+              cmsCallback={(cms) => {
+                /**
+                 * Enables experimental rich-text editor
+                 */
+                cms.flags.set("rich-text-alt", true);
+
+                return cms;
+              }}
               documentCreatorCallback={{
                 /**
                  * After a new document is created, redirect to its location

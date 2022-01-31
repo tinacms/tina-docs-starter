@@ -31,7 +31,7 @@
     "remark": "13.0.0",
     "remark-html": "13.0.1",
     "styled-components": "^5.3.3",
-    "tinacms": "^0.65.3"
+    "tinacms": "upgrade-to-plate-9"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",
