@@ -38,7 +38,7 @@ interface Document {
 
 """A relay-compliant pagination connection"""
 interface Connection {
-  totalCount: Int!
+  totalCount: Float!
 }
 
 type Query {
@@ -46,10 +46,74 @@ type Query {
   getCollections: [Collection!]!
   node(id: String): Node!
   getDocument(collection: String, relativePath: String): DocumentNode!
-  getDocumentList(before: String, after: String, first: Int, last: Int): DocumentConnection!
+  getDocumentList(before: String, after: String, first: Float, last: Float, filter: DocumentFilter): DocumentConnection!
   getDocumentFields: JSON!
   getDocsDocument(relativePath: String): DocsDocument!
-  getDocsList(before: String, after: String, first: Int, last: Int): DocsConnection!
+  getDocsList(before: String, after: String, first: Float, last: Float, filter: DocsFilter): DocsConnection!
+}
+
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input DocsBodyCalloutFilter {
+  type: StringFilter
+  text: StringFilter
+}
+
+input DocsBodyButtonFilter {
+  type: StringFilter
+  text: StringFilter
+  url: StringFilter
+}
+
+input DocsBodyVideoPlayerFilter {
+  url: StringFilter
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input DocsBodyHeroFilter {
+  backgroundImageUrl: ImageFilter
+  slogan: StringFilter
+  teaser: StringFilter
+  btnUrl: StringFilter
+  btnTxt: StringFilter
+}
+
+input DocsBodyFeatureSectionFeatureListFilter {
+  image: ImageFilter
+  title: StringFilter
+  desc: StringFilter
+}
+
+input DocsBodyFeatureSectionFilter {
+  featureList: DocsBodyFeatureSectionFeatureListFilter
+}
+
+input DocsBodyFilter {
+  Callout: DocsBodyCalloutFilter
+  Button: DocsBodyButtonFilter
+  VideoPlayer: DocsBodyVideoPlayerFilter
+  Hero: DocsBodyHeroFilter
+  FeatureSection: DocsBodyFeatureSectionFilter
+}
+
+input DocsFilter {
+  title: StringFilter
+  slug: StringFilter
+  section: StringFilter
+  body: DocsBodyFilter
+}
+
+input DocumentFilter {
+  docs: DocsFilter
 }
 
 type DocumentConnectionEdges {
@@ -59,7 +123,7 @@ type DocumentConnectionEdges {
 
 type DocumentConnection implements Connection {
   pageInfo: PageInfo
-  totalCount: Int!
+  totalCount: Float!
   edges: [DocumentConnectionEdges]
 }
 
@@ -72,7 +136,7 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Int, last: Int): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, filter: DocumentFilter): DocumentConnection!
 }
 
 union DocumentNode = DocsDocument
@@ -100,7 +164,7 @@ type DocsConnectionEdges {
 
 type DocsConnection implements Connection {
   pageInfo: PageInfo
-  totalCount: Int!
+  totalCount: Float!
   edges: [DocsConnectionEdges]
 }
 

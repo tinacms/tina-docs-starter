@@ -56,7 +56,7 @@ export type Document = {
 
 /** A relay-compliant pagination connection */
 export type Connection = {
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
 };
 
 export type Query = {
@@ -91,8 +91,9 @@ export type QueryGetDocumentArgs = {
 export type QueryGetDocumentListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  filter?: InputMaybe<DocumentFilter>;
 };
 
 
@@ -104,8 +105,73 @@ export type QueryGetDocsDocumentArgs = {
 export type QueryGetDocsListArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  filter?: InputMaybe<DocsFilter>;
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type DocsBodyCalloutFilter = {
+  type?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyButtonFilter = {
+  type?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyVideoPlayerFilter = {
+  url?: InputMaybe<StringFilter>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type DocsBodyHeroFilter = {
+  backgroundImageUrl?: InputMaybe<ImageFilter>;
+  slogan?: InputMaybe<StringFilter>;
+  teaser?: InputMaybe<StringFilter>;
+  btnUrl?: InputMaybe<StringFilter>;
+  btnTxt?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyFeatureSectionFeatureListFilter = {
+  image?: InputMaybe<ImageFilter>;
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyFeatureSectionFilter = {
+  featureList?: InputMaybe<DocsBodyFeatureSectionFeatureListFilter>;
+};
+
+export type DocsBodyFilter = {
+  Callout?: InputMaybe<DocsBodyCalloutFilter>;
+  Button?: InputMaybe<DocsBodyButtonFilter>;
+  VideoPlayer?: InputMaybe<DocsBodyVideoPlayerFilter>;
+  Hero?: InputMaybe<DocsBodyHeroFilter>;
+  FeatureSection?: InputMaybe<DocsBodyFeatureSectionFilter>;
+};
+
+export type DocsFilter = {
+  title?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<StringFilter>;
+  section?: InputMaybe<StringFilter>;
+  body?: InputMaybe<DocsBodyFilter>;
+};
+
+export type DocumentFilter = {
+  docs?: InputMaybe<DocsFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -117,7 +183,7 @@ export type DocumentConnectionEdges = {
 export type DocumentConnection = Connection & {
   __typename?: 'DocumentConnection';
   pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<DocumentConnectionEdges>>>;
 };
 
@@ -138,8 +204,9 @@ export type Collection = {
 export type CollectionDocumentsArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  filter?: InputMaybe<DocumentFilter>;
 };
 
 export type DocumentNode = DocsDocument;
@@ -171,7 +238,7 @@ export type DocsConnectionEdges = {
 export type DocsConnection = Connection & {
   __typename?: 'DocsConnection';
   pageInfo?: Maybe<PageInfo>;
-  totalCount: Scalars['Int'];
+  totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<DocsConnectionEdges>>>;
 };
 

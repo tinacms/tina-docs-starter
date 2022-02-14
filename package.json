@@ -4,14 +4,14 @@
   "version": "1.0.0",
   "description": "A minimal doc generator based on Next.js & mdx with TIna",
   "scripts": {
-    "dev": "tinacms server:start -c \"next dev\"",
-    "build": "tinacms server:start -c \"next build\"",
-    "start": "tinacms server:start -c \"next start\"",
+    "dev": "tinacms server:start -c \"next dev\" --experimentalData",
+    "build": "tinacms server:start -c \"next build\" --experimentalData",
+    "start": "tinacms server:start -c \"next start\" --experimentalData",
     "export": "npm run build && next export"
   },
   "dependencies": {
     "@tinacms/auth": "^0.50.2",
-    "@tinacms/cli": "^0.60.0",
+    "@tinacms/cli": "^0.60.5",
     "@xstyled/styled-components": "^3.0.0",
     "gray-matter": "^4.0.2",
     "next": "^12.0.7",
