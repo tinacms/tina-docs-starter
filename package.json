@@ -13,7 +13,7 @@
     "@tinacms/auth": "^0.50.2",
     "@xstyled/styled-components": "^3.0.0",
     "gray-matter": "^4.0.2",
-    "next": "^12.0.7",
+    "next": "^12.0.9",
     "next-mdx-remote": "^3.0.1",
     "next-remote-watch": "1.0.0",
     "next-tinacms-cloudinary": "^3.4.3",
