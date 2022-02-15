@@ -52,6 +52,9 @@ const App = ({ Component, pageProps }) => {
                   );
                 },
               }}
+              cmsCallback={(cms) => {
+                cms.flags.set("tina-admin", true);
+              }}
             >
               <Component {...pageProps} />
             </TinaCMS>
