@@ -1,5 +1,5 @@
 import DocLayout from "../../components/DocLayout";
-import { staticRequest, gql } from "tinacms";
+import { staticRequest } from "tinacms";
 import { sideMenuItems } from "../../utils/mdxUtils";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Button } from "../../components";
@@ -10,7 +10,7 @@ import ReactPlayer from "react-player/lazy";
 import Page404 from "../404.js";
 import { useTina } from "tinacms/dist/edit-state";
 
-const query = gql`
+const query = `
   query DocumentQuery($relativePath: String!) {
     getDocsDocument(relativePath: $relativePath) {
       data {
