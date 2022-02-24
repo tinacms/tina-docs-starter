@@ -79,7 +79,6 @@ union DocumentNode = DocsDocument
 
 type Docs {
   title: String
-  slug: String
   section: String
   body: JSON
 }
@@ -118,7 +117,6 @@ input DocumentMutation {
 
 input DocsMutation {
   title: String
-  slug: String
   section: String
   body: JSON
 }

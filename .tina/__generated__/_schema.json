@@ -24,15 +24,6 @@
         },
         {
           "type": "string",
-          "label": "Slug",
-          "name": "slug",
-          "namespace": [
-            "docs",
-            "slug"
-          ]
-        },
-        {
-          "type": "string",
           "label": "Section",
           "name": "section",
           "namespace": [

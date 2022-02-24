@@ -15,7 +15,6 @@ const query = gql`
     getDocsDocument(relativePath: $relativePath) {
       data {
         title
-        slug
         body
       }
     }
@@ -24,11 +23,13 @@ const query = gql`
         node {
           data {
             title
-            slug
             section
           }
           sys {
-            path
+            breadcrumbs
+            collection {
+              name
+            }
           }
         }
       }
@@ -82,7 +83,7 @@ function DocPage(props) {
 export default DocPage;
 
 export const getStaticProps = async ({ params }) => {
-  const variables = { relativePath: `${params.slug}.mdx` };
+  const variables = { relativePath: `${params.filename}.mdx` };
 
   let data = {};
   try {
@@ -122,7 +123,7 @@ export const getStaticPaths = async () => {
   return {
     paths:
       docsListData?.getDocsList?.edges?.map((doc) => ({
-        params: { slug: doc.node.sys.filename },
+        params: { filename: doc.node.sys.filename },
       })) || [],
     fallback: "blocking",
   };
