@@ -26,7 +26,7 @@ const query = gql`
             section
           }
           sys {
-            breadcrumbs
+            filename
             collection {
               name
             }

@@ -9,7 +9,7 @@ export const sideMenuItems = (sideNavFiles) => {
   for (const file of files) {
     const { title } = file.node.data;
     const {
-      breadcrumbs,
+      filename,
       collection: { name: collectionName },
     } = file.node.sys;
 
@@ -20,7 +20,7 @@ export const sideMenuItems = (sideNavFiles) => {
     if (!groupsMapping[section]) groupsMapping[section] = [];
     groupsMapping[section].push({
       title: title || "",
-      slug: `/${collectionName}/${breadcrumbs.join("/")}`,
+      slug: `/${collectionName}/${filename}`,
     });
   }
 
