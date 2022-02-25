@@ -35,25 +35,21 @@ const App = ({ Component, pageProps }) => {
                 return pack.TinaCloudCloudinaryMediaStore;
               }}
               apiURL={apiURL}
-              documentCreatorCallback={{
-                /**
-                 * After a new document is created, redirect to its location
-                 */
-                onNewDocument: ({ collection: { slug }, breadcrumbs }) => {
-                  const relativeUrl = `/${slug}/${breadcrumbs.join("/")}`;
-                  return (window.location.href = relativeUrl);
-                },
-                /**
-                 * Only allows documents to be created to the `Blog Posts` Collection
-                 */
-                filterCollections: (options) => {
-                  return options.filter(
-                    (option) => option.label === "Documentation"
-                  );
-                },
-              }}
               cmsCallback={(cms) => {
                 cms.flags.set("tina-admin", true);
+
+                import("tinacms").then(({ RouteMappingPlugin }) => {
+                  const RouteMapping = new RouteMappingPlugin(
+                    (collection, document) => {
+                      if (["docs"].includes(collection.name)) {
+                        return `/docs/${document.sys.filename}`;
+                      }
+
+                      return undefined;
+                    }
+                  );
+                  cms.plugins.add(RouteMapping);
+                });
               }}
             >
               <Component {...pageProps} />
