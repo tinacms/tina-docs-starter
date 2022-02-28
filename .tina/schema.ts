@@ -15,11 +15,6 @@ export default defineSchema({
         },
         {
           type: "string",
-          label: "Slug",
-          name: "slug",
-        },
-        {
-          type: "string",
           label: "Section",
           name: "section",
         },
@@ -58,7 +53,7 @@ export default defineSchema({
                 defaultItem: {
                   type: "primary",
                   text: "Learn More",
-                  url:"https://tina.io"
+                  url: "https://tina.io",
                 },
               },
               fields: [
@@ -96,7 +91,8 @@ export default defineSchema({
               label: "Hero",
               ui: {
                 defaultItem: {
-                  backgroundImageUrl: "https://res.cloudinary.com/tina-demos/image/upload/v1634760332/flyingTina_dfh69x.png",
+                  backgroundImageUrl:
+                    "https://res.cloudinary.com/tina-demos/image/upload/v1634760332/flyingTina_dfh69x.png",
                   slogan: "Eat your food!",
                   teaser: "Lorem ipsum dolor sit amet.",
                   btnUrl: "https://tina.io",

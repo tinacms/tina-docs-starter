@@ -7,16 +7,20 @@ export const sideMenuItems = (sideNavFiles) => {
   // Create a section-to-children mapping
   const groupsMapping = {};
   for (const file of files) {
-    const {title, slug} = file.node.data;
-    let section = file.node.data.section;
+    const { title } = file.node.data;
+    const {
+      filename,
+      collection: { name: collectionName },
+    } = file.node.sys;
 
     // If no section, use the default one ("Docs")
+    let section = file.node.data.section;
     if (!section) section = "Docs";
 
     if (!groupsMapping[section]) groupsMapping[section] = [];
     groupsMapping[section].push({
-      slug: slug || "",
       title: title || "",
+      slug: `/${collectionName}/${filename}`,
     });
   }
 
