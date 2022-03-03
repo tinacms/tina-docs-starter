@@ -194,8 +194,6 @@ export const tinaConfig = defineConfig({
   },
   apiURL,
   cmsCallback: (cms) => {
-    cms.flags.set("tina-admin", true);
-
     import("tinacms").then(({ RouteMappingPlugin }) => {
       const RouteMapping = new RouteMappingPlugin((collection, document) => {
         if (["docs"].includes(collection.name)) {
