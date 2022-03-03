@@ -1,4 +1,4 @@
-import { defineSchema } from "@tinacms/cli";
+import { defineConfig, defineSchema } from "tinacms";
 
 export default defineSchema({
   collections: [
@@ -179,4 +179,33 @@ export default defineSchema({
       ],
     },
   ],
+});
+
+const branch = process.env.NEXT_PUBLIC_EDIT_BRANCH || "main";
+const apiURL =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:4001/graphql"
+    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
+
+export const tinaConfig = defineConfig({
+  mediaStore: async () => {
+    const pack = await import("next-tinacms-cloudinary");
+    return pack.TinaCloudCloudinaryMediaStore;
+  },
+  apiURL,
+  cmsCallback: (cms) => {
+    cms.flags.set("tina-admin", true);
+
+    import("tinacms").then(({ RouteMappingPlugin }) => {
+      const RouteMapping = new RouteMappingPlugin((collection, document) => {
+        if (["docs"].includes(collection.name)) {
+          return `/docs/${document.sys.filename}`;
+        }
+
+        return undefined;
+      });
+      cms.plugins.add(RouteMapping);
+    });
+    return cms;
+  },
 });
