@@ -61,6 +61,7 @@ export type Connection = {
 
 export type Query = {
   __typename?: 'Query';
+  getOptimizedQuery?: Maybe<Scalars['String']>;
   getCollection: Collection;
   getCollections: Array<Collection>;
   node: Node;
@@ -69,6 +70,11 @@ export type Query = {
   getDocumentFields: Scalars['JSON'];
   getDocsDocument: DocsDocument;
   getDocsList: DocsConnection;
+};
+
+
+export type QueryGetOptimizedQueryArgs = {
+  queryString: Scalars['String'];
 };
 
 

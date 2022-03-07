@@ -194,6 +194,7 @@ export const tinaConfig = defineConfig({
   },
   apiURL,
   cmsCallback: (cms) => {
+    cms.flags.set("use-unstable-formify", true);
     import("tinacms").then(({ RouteMappingPlugin }) => {
       const RouteMapping = new RouteMappingPlugin((collection, document) => {
         if (["docs"].includes(collection.name)) {
