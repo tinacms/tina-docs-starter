@@ -12,14 +12,7 @@ import { theme } from "../config/theme";
 const GlobalStyle = createGlobalStyle`
   ${th("global")}
 `;
-
-const TinaCMS = dynamic(() => import("tinacms"), { ssr: false });
-
-const branch = process.env.NEXT_PUBLIC_EDIT_BRANCH || "main";
-const apiURL =
-  process.env.NODE_ENV == "development"
-    ? "http://localhost:4001/graphql"
-    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
+import TinaProvider from "../.tina/components/TinaDynamicProvider";
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -27,37 +20,9 @@ const App = ({ Component, pageProps }) => {
       <ColorModeProvider>
         <Preflight />
         <GlobalStyle />
-        <TinaEditProvider
-          editMode={
-            <TinaCMS
-              mediaStore={async () => {
-                const pack = await import("next-tinacms-cloudinary");
-                return pack.TinaCloudCloudinaryMediaStore;
-              }}
-              apiURL={apiURL}
-              cmsCallback={(cms) => {
-                cms.flags.set("tina-admin", true);
-
-                import("tinacms").then(({ RouteMappingPlugin }) => {
-                  const RouteMapping = new RouteMappingPlugin(
-                    (collection, document) => {
-                      if (["docs"].includes(collection.name)) {
-                        return `/docs/${document.sys.filename}`;
-                      }
-
-                      return undefined;
-                    }
-                  );
-                  cms.plugins.add(RouteMapping);
-                });
-              }}
-            >
-              <Component {...pageProps} />
-            </TinaCMS>
-          }
-        >
+        <TinaProvider>
           <Component {...pageProps} />
-        </TinaEditProvider>
+        </TinaProvider>
       </ColorModeProvider>
     </ThemeProvider>
   );
