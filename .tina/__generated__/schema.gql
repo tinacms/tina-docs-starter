@@ -30,35 +30,34 @@ interface Node {
 
 """"""
 interface Document {
-  sys: SystemInfo
   id: ID!
-  form: JSON!
-  values: JSON!
+  _sys: SystemInfo
+  _values: JSON!
 }
 
 """A relay-compliant pagination connection"""
 interface Connection {
   totalCount: Float!
+  pageInfo: PageInfo!
 }
 
 type Query {
-  getCollection(collection: String): Collection!
-  getCollections: [Collection!]!
+  getOptimizedQuery(queryString: String!): String
+  collection(collection: String): Collection!
+  collections: [Collection!]!
   node(id: String): Node!
-  getDocument(collection: String, relativePath: String): DocumentNode!
-  getDocumentList(before: String, after: String, first: Float, last: Float): DocumentConnection!
-  getDocumentFields: JSON!
-  getDocsDocument(relativePath: String): DocsDocument!
-  getDocsList(before: String, after: String, first: Float, last: Float): DocsConnection!
+  document(collection: String, relativePath: String): DocumentNode!
+  docs(relativePath: String): Docs!
+  docsConnection(before: String, after: String, first: Float, last: Float, sort: String): DocsConnection!
 }
 
 type DocumentConnectionEdges {
-  cursor: String
+  cursor: String!
   node: DocumentNode
 }
 
 type DocumentConnection implements Connection {
-  pageInfo: PageInfo
+  pageInfo: PageInfo!
   totalCount: Float!
   edges: [DocumentConnectionEdges]
 }
@@ -72,33 +71,27 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
 }
 
-union DocumentNode = DocsDocument
+union DocumentNode = Docs
 
-type Docs {
+type Docs implements Node & Document {
   title: String
   section: String
   body: JSON
-}
-
-type DocsDocument implements Node & Document {
   id: ID!
-  sys: SystemInfo!
-  data: Docs!
-  form: JSON!
-  values: JSON!
-  dataJSON: JSON!
+  _sys: SystemInfo!
+  _values: JSON!
 }
 
 type DocsConnectionEdges {
-  cursor: String
-  node: DocsDocument
+  cursor: String!
+  node: Docs
 }
 
 type DocsConnection implements Connection {
-  pageInfo: PageInfo
+  pageInfo: PageInfo!
   totalCount: Float!
   edges: [DocsConnectionEdges]
 }
@@ -106,9 +99,10 @@ type DocsConnection implements Connection {
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
-  updateDocsDocument(relativePath: String!, params: DocsMutation!): DocsDocument!
-  createDocsDocument(relativePath: String!, params: DocsMutation!): DocsDocument!
+  updateDocs(relativePath: String!, params: DocsMutation!): Docs!
+  createDocs(relativePath: String!, params: DocsMutation!): Docs!
 }
 
 input DocumentMutation {

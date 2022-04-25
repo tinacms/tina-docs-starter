@@ -1,5 +1,5 @@
 export const sideMenuItems = (sideNavFiles) => {
-  const files = sideNavFiles?.getDocsList?.edges;
+  const files = sideNavFiles?.docsConnection?.edges;
 
   // If no sideNavFiles, return an empty array
   if (!files?.length) return [];
@@ -7,14 +7,14 @@ export const sideMenuItems = (sideNavFiles) => {
   // Create a section-to-children mapping
   const groupsMapping = {};
   for (const file of files) {
-    const { title } = file.node.data;
+    const { title } = file.node;
     const {
       filename,
       collection: { name: collectionName },
-    } = file.node.sys;
+    } = file.node._sys;
 
     // If no section, use the default one ("Docs")
-    let section = file.node.data.section;
+    let section = file.node.section;
     if (!section) section = "Docs";
 
     if (!groupsMapping[section]) groupsMapping[section] = [];

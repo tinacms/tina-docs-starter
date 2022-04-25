@@ -48,31 +48,35 @@ export type Node = {
 };
 
 export type Document = {
-  sys?: Maybe<SystemInfo>;
   id: Scalars['ID'];
-  form: Scalars['JSON'];
-  values: Scalars['JSON'];
+  _sys?: Maybe<SystemInfo>;
+  _values: Scalars['JSON'];
 };
 
 /** A relay-compliant pagination connection */
 export type Connection = {
   totalCount: Scalars['Float'];
+  pageInfo: PageInfo;
 };
 
 export type Query = {
   __typename?: 'Query';
-  getCollection: Collection;
-  getCollections: Array<Collection>;
+  getOptimizedQuery?: Maybe<Scalars['String']>;
+  collection: Collection;
+  collections: Array<Collection>;
   node: Node;
-  getDocument: DocumentNode;
-  getDocumentList: DocumentConnection;
-  getDocumentFields: Scalars['JSON'];
-  getDocsDocument: DocsDocument;
-  getDocsList: DocsConnection;
+  document: DocumentNode;
+  docs: Docs;
+  docsConnection: DocsConnection;
 };
 
 
-export type QueryGetCollectionArgs = {
+export type QueryGetOptimizedQueryArgs = {
+  queryString: Scalars['String'];
+};
+
+
+export type QueryCollectionArgs = {
   collection?: InputMaybe<Scalars['String']>;
 };
 
@@ -82,41 +86,34 @@ export type QueryNodeArgs = {
 };
 
 
-export type QueryGetDocumentArgs = {
+export type QueryDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath?: InputMaybe<Scalars['String']>;
 };
 
 
-export type QueryGetDocumentListArgs = {
-  before?: InputMaybe<Scalars['String']>;
-  after?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Float']>;
-  last?: InputMaybe<Scalars['Float']>;
-};
-
-
-export type QueryGetDocsDocumentArgs = {
+export type QueryDocsArgs = {
   relativePath?: InputMaybe<Scalars['String']>;
 };
 
 
-export type QueryGetDocsListArgs = {
+export type QueryDocsConnectionArgs = {
   before?: InputMaybe<Scalars['String']>;
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
 };
 
 export type DocumentConnectionEdges = {
   __typename?: 'DocumentConnectionEdges';
-  cursor?: Maybe<Scalars['String']>;
+  cursor: Scalars['String'];
   node?: Maybe<DocumentNode>;
 };
 
 export type DocumentConnection = Connection & {
   __typename?: 'DocumentConnection';
-  pageInfo?: Maybe<PageInfo>;
+  pageInfo: PageInfo;
   totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<DocumentConnectionEdges>>>;
 };
@@ -140,36 +137,30 @@ export type CollectionDocumentsArgs = {
   after?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentNode = DocsDocument;
+export type DocumentNode = Docs;
 
-export type Docs = {
+export type Docs = Node & Document & {
   __typename?: 'Docs';
   title?: Maybe<Scalars['String']>;
   section?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['JSON']>;
-};
-
-export type DocsDocument = Node & Document & {
-  __typename?: 'DocsDocument';
   id: Scalars['ID'];
-  sys: SystemInfo;
-  data: Docs;
-  form: Scalars['JSON'];
-  values: Scalars['JSON'];
-  dataJSON: Scalars['JSON'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
 };
 
 export type DocsConnectionEdges = {
   __typename?: 'DocsConnectionEdges';
-  cursor?: Maybe<Scalars['String']>;
-  node?: Maybe<DocsDocument>;
+  cursor: Scalars['String'];
+  node?: Maybe<Docs>;
 };
 
 export type DocsConnection = Connection & {
   __typename?: 'DocsConnection';
-  pageInfo?: Maybe<PageInfo>;
+  pageInfo: PageInfo;
   totalCount: Scalars['Float'];
   edges?: Maybe<Array<Maybe<DocsConnectionEdges>>>;
 };
@@ -178,9 +169,10 @@ export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
   updateDocument: DocumentNode;
+  deleteDocument: DocumentNode;
   createDocument: DocumentNode;
-  updateDocsDocument: DocsDocument;
-  createDocsDocument: DocsDocument;
+  updateDocs: Docs;
+  createDocs: Docs;
 };
 
 
@@ -198,6 +190,12 @@ export type MutationUpdateDocumentArgs = {
 };
 
 
+export type MutationDeleteDocumentArgs = {
+  collection?: InputMaybe<Scalars['String']>;
+  relativePath: Scalars['String'];
+};
+
+
 export type MutationCreateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']>;
   relativePath: Scalars['String'];
@@ -205,13 +203,13 @@ export type MutationCreateDocumentArgs = {
 };
 
 
-export type MutationUpdateDocsDocumentArgs = {
+export type MutationUpdateDocsArgs = {
   relativePath: Scalars['String'];
   params: DocsMutation;
 };
 
 
-export type MutationCreateDocsDocumentArgs = {
+export type MutationCreateDocsArgs = {
   relativePath: Scalars['String'];
   params: DocsMutation;
 };
@@ -228,17 +226,17 @@ export type DocsMutation = {
 
 export type DocsPartsFragment = { __typename?: 'Docs', title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined };
 
-export type GetDocsDocumentQueryVariables = Exact<{
+export type DocsQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type GetDocsDocumentQuery = { __typename?: 'Query', getDocsDocument: { __typename?: 'DocsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Docs', title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined } } };
+export type DocsQuery = { __typename?: 'Query', docs: { __typename?: 'Docs', id: string, title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type GetDocsListQueryVariables = Exact<{ [key: string]: never; }>;
+export type DocsConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetDocsListQuery = { __typename?: 'Query', getDocsList: { __typename?: 'DocsConnection', totalCount: number, edges?: Array<{ __typename?: 'DocsConnectionEdges', node?: { __typename?: 'DocsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Docs', title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined } } | null | undefined } | null | undefined> | null | undefined } };
+export type DocsConnectionQuery = { __typename?: 'Query', docsConnection: { __typename?: 'DocsConnection', totalCount: number, edges?: Array<{ __typename?: 'DocsConnectionEdges', node?: { __typename?: 'Docs', id: string, title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null | undefined } | null | undefined> | null | undefined } };
 
 export const DocsPartsFragmentDoc = gql`
     fragment DocsParts on Docs {
@@ -247,10 +245,10 @@ export const DocsPartsFragmentDoc = gql`
   body
 }
     `;
-export const GetDocsDocumentDocument = gql`
-    query getDocsDocument($relativePath: String!) {
-  getDocsDocument(relativePath: $relativePath) {
-    sys {
+export const DocsDocument = gql`
+    query docs($relativePath: String!) {
+  docs(relativePath: $relativePath) {
+    _sys {
       filename
       basename
       breadcrumbs
@@ -259,20 +257,18 @@ export const GetDocsDocumentDocument = gql`
       extension
     }
     id
-    data {
-      ...DocsParts
-    }
+    ...DocsParts
   }
 }
     ${DocsPartsFragmentDoc}`;
-export const GetDocsListDocument = gql`
-    query getDocsList {
-  getDocsList {
+export const DocsConnectionDocument = gql`
+    query docsConnection {
+  docsConnection {
     totalCount
     edges {
       node {
         id
-        sys {
+        _sys {
           filename
           basename
           breadcrumbs
@@ -280,9 +276,7 @@ export const GetDocsListDocument = gql`
           relativePath
           extension
         }
-        data {
-          ...DocsParts
-        }
+        ...DocsParts
       }
     }
   }
@@ -291,11 +285,11 @@ export const GetDocsListDocument = gql`
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
-      getDocsDocument(variables: GetDocsDocumentQueryVariables, options?: C): Promise<{data: GetDocsDocumentQuery, variables: GetDocsDocumentQueryVariables, query: string}> {
-        return requester<{data: GetDocsDocumentQuery, variables: GetDocsDocumentQueryVariables, query: string}, GetDocsDocumentQueryVariables>(GetDocsDocumentDocument, variables, options);
+      docs(variables: DocsQueryVariables, options?: C): Promise<{data: DocsQuery, variables: DocsQueryVariables, query: string}> {
+        return requester<{data: DocsQuery, variables: DocsQueryVariables, query: string}, DocsQueryVariables>(DocsDocument, variables, options);
       },
-    getDocsList(variables?: GetDocsListQueryVariables, options?: C): Promise<{data: GetDocsListQuery, variables: GetDocsListQueryVariables, query: string}> {
-        return requester<{data: GetDocsListQuery, variables: GetDocsListQueryVariables, query: string}, GetDocsListQueryVariables>(GetDocsListDocument, variables, options);
+    docsConnection(variables?: DocsConnectionQueryVariables, options?: C): Promise<{data: DocsConnectionQuery, variables: DocsConnectionQueryVariables, query: string}> {
+        return requester<{data: DocsConnectionQuery, variables: DocsConnectionQueryVariables, query: string}, DocsConnectionQueryVariables>(DocsConnectionDocument, variables, options);
       }
     };
   }

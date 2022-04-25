@@ -1,6 +1,6 @@
-query getDocsDocument($relativePath: String!) {
-  getDocsDocument(relativePath: $relativePath) {
-    sys {
+query docs($relativePath: String!) {
+  docs(relativePath: $relativePath) {
+    _sys {
       filename
       basename
       breadcrumbs
@@ -9,19 +9,17 @@ query getDocsDocument($relativePath: String!) {
       extension
     }
     id
-    data {
-      ...DocsParts
-    }
+    ...DocsParts
   }
 }
 
-query getDocsList {
-  getDocsList {
+query docsConnection {
+  docsConnection {
     totalCount
     edges {
       node {
         id
-        sys {
+        _sys {
           filename
           basename
           breadcrumbs
@@ -29,9 +27,7 @@ query getDocsList {
           relativePath
           extension
         }
-        data {
-          ...DocsParts
-        }
+        ...DocsParts
       }
     }
   }

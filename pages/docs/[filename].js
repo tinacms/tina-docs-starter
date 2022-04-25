@@ -12,20 +12,16 @@ import { useTina } from "tinacms/dist/edit-state";
 
 const query = gql`
   query DocumentQuery($relativePath: String!) {
-    getDocsDocument(relativePath: $relativePath) {
-      data {
-        title
-        body
-      }
+    docs(relativePath: $relativePath) {
+      title
+      body
     }
-    getDocsList {
+    docsConnection {
       edges {
         node {
-          data {
-            title
-            section
-          }
-          sys {
+          title
+          section
+          _sys {
             filename
             collection {
               name
@@ -66,14 +62,11 @@ function DocPage(props) {
     data: props.data,
   });
 
-  if (data && data.getDocsDocument) {
+  if (data && data.docs) {
     const sideNav = sideMenuItems(data);
     return (
-      <DocLayout title={data.getDocsDocument.data.title} navGroups={sideNav}>
-        <TinaMarkdown
-          components={components}
-          content={data.getDocsDocument.data.body}
-        />
+      <DocLayout title={data.docs.title} navGroups={sideNav}>
+        <TinaMarkdown components={components} content={data.docs.body} />
       </DocLayout>
     );
   } else {
@@ -107,10 +100,10 @@ export const getStaticPaths = async () => {
   const docsListData = await staticRequest({
     query: `#graphql
       {
-        getDocsList {
+        docsConnection {
           edges {
             node {
-              sys {
+              _sys {
                 filename
               }
             }
@@ -122,8 +115,8 @@ export const getStaticPaths = async () => {
   });
   return {
     paths:
-      docsListData?.getDocsList?.edges?.map((doc) => ({
-        params: { filename: doc.node.sys.filename },
+      docsListData?.docsConnection?.edges?.map((doc) => ({
+        params: { filename: doc.node._sys.filename },
       })) || [],
     fallback: "blocking",
   };
