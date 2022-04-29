@@ -1,6 +1,6 @@
 import { defineConfig, defineSchema } from "tinacms";
 
-export default defineSchema({
+const schema = defineSchema({
   collections: [
     {
       label: "Documentation",
@@ -181,6 +181,8 @@ export default defineSchema({
   ],
 });
 
+export default schema;
+
 const branch = process.env.NEXT_PUBLIC_EDIT_BRANCH || "main";
 const apiURL =
   process.env.NODE_ENV == "development"
@@ -188,6 +190,7 @@ const apiURL =
     : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
 
 export const tinaConfig = defineConfig({
+  schema,
   mediaStore: async () => {
     const pack = await import("next-tinacms-cloudinary");
     return pack.TinaCloudCloudinaryMediaStore;
@@ -197,7 +200,7 @@ export const tinaConfig = defineConfig({
     import("tinacms").then(({ RouteMappingPlugin }) => {
       const RouteMapping = new RouteMappingPlugin((collection, document) => {
         if (["docs"].includes(collection.name)) {
-          return `/docs/${document.sys.filename}`;
+          return `/docs/${document._sys.filename}`;
         }
 
         return undefined;
