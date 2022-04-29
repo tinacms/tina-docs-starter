@@ -40,5 +40,8 @@
     "serve": "^11.3.2",
     "unist-util-visit": "^2.0.3"
   },
+  "resolutions": {
+    "@headlessui/react": "1.4.1"
+  },
   "license": "MIT"
 }
