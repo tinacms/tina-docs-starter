@@ -33,7 +33,7 @@
     "tinacms": "^0.68.8"
   },
   "devDependencies": {
-    "@tinacms/cli": "^0.60.20",
+    "@tinacms/cli": "^0.60.21",
     "babel-plugin-styled-components": "^1.12.0",
     "github-slugger": "^1.3.0",
     "mdast-util-to-string": "^2.0.0",

@@ -240,7 +240,13 @@ export type DocsQueryVariables = Exact<{
 
 export type DocsQuery = { __typename?: 'Query', docs: { __typename?: 'Docs', id: string, title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type DocsConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type DocsConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+}>;
 
 
 export type DocsConnectionQuery = { __typename?: 'Query', docsConnection: { __typename?: 'DocsConnection', totalCount: number, edges?: Array<{ __typename?: 'DocsConnectionEdges', node?: { __typename?: 'Docs', id: string, title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null | undefined } | null | undefined> | null | undefined } };
@@ -271,8 +277,14 @@ export const DocsDocument = gql`
 }
     ${DocsPartsFragmentDoc}`;
 export const DocsConnectionDocument = gql`
-    query docsConnection {
-  docsConnection {
+    query docsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+  docsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+  ) {
     totalCount
     edges {
       node {
