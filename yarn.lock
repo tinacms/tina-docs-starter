@@ -1509,10 +1509,10 @@
   resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.2.tgz#d44998aac125a68d96d097e49ff84d1c1ff7a7c2"
   integrity sha512-5oBWtkXG8vu/W9txQrcIb7r2GC6XlgpPsO2EKdjGF4gTWZVlwah73OHqL/QogZWIbZ/4znPL1QkZVwGZuYURiw==
 
-"@tinacms/cli@^0.60.21":
-  version "0.60.21"
-  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.60.21.tgz#f62d4ec83d3aab03557076fa4d0ecfbe4ab0c466"
-  integrity sha512-NOi7WtzSOCsfYGMcP5L86IdyOUHhmQSCMwSz7Xe0CMWiqPD69G/w6C589wjrobAmeIe+y0tgrVhoVp5FPiK21w==
+"@tinacms/cli@^0.60.23":
+  version "0.60.23"
+  resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.60.23.tgz#c6d1fb98c796174f6f50d9c5d936b96aa125efe1"
+  integrity sha512-+kbfQI9eqyt+QJes9vBmmGBDG7nate7cMltC2bRl6DvVNK7qCngwxZF7TJC7hIQ7K0085y0rkfF2Bxf6WLHb6g==
   dependencies:
     "@graphql-codegen/core" "^2.1.0"
     "@graphql-codegen/plugin-helpers" latest
@@ -1523,9 +1523,9 @@
     "@graphql-tools/graphql-file-loader" "^7.2.0"
     "@graphql-tools/load" "^7.3.2"
     "@tinacms/datalayer" "0.1.1"
-    "@tinacms/graphql" "0.60.6"
+    "@tinacms/graphql" "0.60.8"
     "@tinacms/metrics" "0.0.3"
-    "@tinacms/schema-tools" "0.0.4"
+    "@tinacms/schema-tools" "0.0.5"
     "@yarnpkg/esbuild-plugin-pnp" "^2.0.1-rc.3"
     add "^2.0.6"
     ajv "^6.12.3"
@@ -1579,13 +1579,14 @@
     prettier "^2.2.1"
     yup "^0.32.9"
 
-"@tinacms/graphql@0.60.6":
-  version "0.60.6"
-  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.60.6.tgz#0fe680ed6b7f51f75d49d21f41eb348877997a50"
-  integrity sha512-XrqdqmwVmIst4PgXLicuB4CuNFuglzYy2nW+vM35UQy2V+5Pl5tzL2iaTpRxm10iuAS0v8Ja040wDlxTZZEcVQ==
+"@tinacms/graphql@0.60.8":
+  version "0.60.8"
+  resolved "https://registry.yarnpkg.com/@tinacms/graphql/-/graphql-0.60.8.tgz#4744ef59c8b5cf664b704156bcfd77163072ea8e"
+  integrity sha512-xwDqUcrEwd7i6Qi1IiPgDKiKJsOXW02r9O5ylc6+LndLU+HRedJHA2EexW+1146j/Uz5pfuwn96NvCwtBSQYIg==
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
     "@tinacms/datalayer" "0.1.1"
+    "@tinacms/schema-tools" "0.0.5"
     body-parser "^1.19.0"
     cors "^2.8.5"
     dataloader "^2.0.0"
@@ -1638,6 +1639,13 @@
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-0.0.4.tgz#dd020c7218a6718b755eaba093dd8ba2064fa72e"
   integrity sha512-MnOS75o22ce21mbX48uHgHV0yA7R7g4vZzD2g3WYxKg2yQTAuZUyJFwSZav1I7e6WAR4DQAOqymLgK51W1eE2A==
+  dependencies:
+    zod "^3.14.3"
+
+"@tinacms/schema-tools@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-0.0.5.tgz#76ae500ac6cac02dffd48cf778a6204db0c448bb"
+  integrity sha512-/Ers8dPWA8aldK0DdsZYAh8blmasJr9pLgQ5iRUyFPyBu79kBhSuB4D8dikppraQyAo50psZIzWZ2cz+2twH2Q==
   dependencies:
     zod "^3.14.3"
 
@@ -6734,21 +6742,7 @@ multer@1.4.2:
     type-is "^1.6.4"
     xtend "^4.0.0"
 
-multer@^1.4.2:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/multer/-/multer-1.4.3.tgz#4db352d6992e028ac0eacf7be45c6efd0264297b"
-  integrity sha512-np0YLKncuZoTzufbkM6wEKp68EhWJXcU6fq6QqrSwkckd2LlMgd1UqhUJLj6NS/5sZ8dE8LYDWslsltJznnXlg==
-  dependencies:
-    append-field "^1.0.0"
-    busboy "^0.2.11"
-    concat-stream "^1.5.2"
-    mkdirp "^0.5.4"
-    object-assign "^4.1.1"
-    on-finished "^2.3.0"
-    type-is "^1.6.4"
-    xtend "^4.0.0"
-
-multer@^1.4.4:
+multer@^1.4.2, multer@^1.4.4:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/multer/-/multer-1.4.4.tgz#e2bc6cac0df57a8832b858d7418ccaa8ebaf7d8c"
   integrity sha512-2wY2+xD4udX612aMqMcB8Ws2Voq6NIUPEtD1be6m411T4uDH/VtL9i//xvcyFlTVfRdaBsk7hV5tgrGQqhuBiw==
