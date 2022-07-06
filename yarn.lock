@@ -1492,10 +1492,10 @@
   resolved "https://registry.yarnpkg.com/@sambego/storybook-styles/-/storybook-styles-1.0.0.tgz#4f840ee26dd0b25dcb803a75caa42e16071dcaae"
   integrity sha512-n0SqZwDewUDRaStEcoNMiYy9qovaLVStsh4Gb2dc2LLiG3IIK0UXdeR1N7puVuRihJq/192uOyGPCjZ/NAteuA==
 
-"@tinacms/auth@^0.50.2":
-  version "0.50.2"
-  resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.2.tgz#d44998aac125a68d96d097e49ff84d1c1ff7a7c2"
-  integrity sha512-5oBWtkXG8vu/W9txQrcIb7r2GC6XlgpPsO2EKdjGF4gTWZVlwah73OHqL/QogZWIbZ/4znPL1QkZVwGZuYURiw==
+"@tinacms/auth@^0.50.3":
+  version "0.50.3"
+  resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.3.tgz#92d7b5a055fb37528ab72e3a9bb0d89b7fa766dd"
+  integrity sha512-vucKZyi2Wj83tGU3VBd/mwlgbmgTXclps6/slOPyEzJUH0Sl31vmXs3ATCG0jeIpp4Tu6IBVCVPlmvGcNpE9OQ==
 
 "@tinacms/cli@^0.60.26":
   version "0.60.26"
