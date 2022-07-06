@@ -6787,10 +6787,10 @@ next-remote-watch@1.0.0:
     commander "^5.0.0"
     express "^4.17.1"
 
-next-tinacms-cloudinary@^3.4.3:
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/next-tinacms-cloudinary/-/next-tinacms-cloudinary-3.4.3.tgz#cbeed12a6f9092404c8ad10013dc00166f60d864"
-  integrity sha512-8nvY5l+kA0Yg3Wcpm88N7ByqGfJtSAE7nwp9XZC9RoXq3ZlIpv0npR01IqINZ9U6u8THcudVBLhf2Wi2Hw4xNg==
+next-tinacms-cloudinary@^3.5.23:
+  version "3.5.23"
+  resolved "https://registry.yarnpkg.com/next-tinacms-cloudinary/-/next-tinacms-cloudinary-3.5.23.tgz#5e71221f4847087a51633050e29260874327dc56"
+  integrity sha512-qh5QeXjgjPohtC05PlkOTjHKLfPF4ua/vlK4lzXoNZ7/KOwxjM/DCdOOmTQJvEpOCehjQGiPsJgo0DG3oruWiw==
   dependencies:
     cloudinary "^1.25.2"
     multer "^1.4.2"
