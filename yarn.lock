@@ -867,16 +867,7 @@
   dependencies:
     tslib "~2.3.0"
 
-"@graphql-tools/relay-operation-optimizer@^6.3.7":
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/relay-operation-optimizer/-/relay-operation-optimizer-6.4.1.tgz#28572444e2c00850c889a84472f3cc7405dc1ad8"
-  integrity sha512-2b9D5L+31sIBnvmcmIW5tfvNUV+nJFtbHpUyarTRDmFT6EZ2cXo4WZMm9XJcHQD/Z5qvMXfPHxzQ3/JUs4xI+w==
-  dependencies:
-    "@graphql-tools/utils" "^8.5.1"
-    relay-compiler "12.0.0"
-    tslib "~2.3.0"
-
-"@graphql-tools/relay-operation-optimizer@^6.4.1":
+"@graphql-tools/relay-operation-optimizer@^6.3.7", "@graphql-tools/relay-operation-optimizer@^6.4.1":
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/@graphql-tools/relay-operation-optimizer/-/relay-operation-optimizer-6.4.2.tgz#18e20fed783f5de3081ce90d3b4d82047ea8d46b"
   integrity sha512-pc/cliYO0veVbMyM5H54lZzQh+9SxnjawqR623rc+jPuY9JUQcuIKkZzM1+E5blbtr4dvh7Bi4uzf3rJ0sxG0Q==
@@ -1629,6 +1620,13 @@
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-0.0.7.tgz#bcefbebc8f58ba6f5975b0a3db43443241bf8563"
   integrity sha512-RhWpBxNlPN5bp+icwnb7YtarYAG5w0d3mNVzrGTt2PcXmnPZ3+CcdGEqp0kDWpGevRUNMeCV1XlvEjWklB1Xcg==
+  dependencies:
+    zod "^3.14.3"
+
+"@tinacms/schema-tools@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@tinacms/schema-tools/-/schema-tools-0.0.8.tgz#4caf25429d8252c3a4b432e6930ee72f7cdf7af5"
+  integrity sha512-VTlQXzABJWKgra6G9v3SuhukHeXh8bz19Mo8tOhj4OocCn9rwNic0gFf9xgz/GQ8VwtMJTja8Ec6s+jmyQ4Ctg==
   dependencies:
     zod "^3.14.3"
 
@@ -8838,16 +8836,16 @@ timers-browserify@2.0.12:
   dependencies:
     setimmediate "^1.0.4"
 
-tinacms@^0.68.12:
-  version "0.68.12"
-  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.68.12.tgz#a3182e964c75bb14af3ea47abb0c73f90b893214"
-  integrity sha512-wQEi5KXHPnChQGiAY6LobflX5vjU68kW1nItYocZBPA6FSy/UEK0dzSQEk1lw8NqA66X5nhFR+7jHWp5SH2Uyw==
+tinacms@^0.68.13:
+  version "0.68.13"
+  resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.68.13.tgz#be86c309219811b13dc13a9af82314bcca560948"
+  integrity sha512-o0UncLXl1EXycjhWOga5E77wdo6HlgEOdhO1g8OVjEtMl/IORnUnttNyqrfHvB59ZauPkMyqVnRQRwACOyBCAw==
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
     "@headlessui/react" "^1.5.0"
     "@heroicons/react" "^1.0.4"
     "@react-hook/window-size" "^3.0.7"
-    "@tinacms/schema-tools" "0.0.7"
+    "@tinacms/schema-tools" "0.0.8"
     "@tinacms/sharedctx" "0.1.2"
     "@tinacms/toolkit" "0.56.35"
     crypto-js "^4.0.0"
