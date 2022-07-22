@@ -110,6 +110,11 @@ export type QueryDocsConnectionArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocsFilter>;
+};
+
+export type DocumentFilter = {
+  docs?: InputMaybe<DocsFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -145,6 +150,7 @@ export type CollectionDocumentsArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocumentFilter>;
 };
 
 export type DocumentNode = Docs;
@@ -157,6 +163,67 @@ export type Docs = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type DocsBodyCalloutFilter = {
+  type?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyButtonFilter = {
+  type?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyVideoPlayerFilter = {
+  url?: InputMaybe<StringFilter>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type DocsBodyHeroFilter = {
+  backgroundImageUrl?: InputMaybe<ImageFilter>;
+  slogan?: InputMaybe<StringFilter>;
+  teaser?: InputMaybe<StringFilter>;
+  btnUrl?: InputMaybe<StringFilter>;
+  btnTxt?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyFeatureSectionFeatureListFilter = {
+  image?: InputMaybe<ImageFilter>;
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyFeatureSectionFilter = {
+  featureList?: InputMaybe<DocsBodyFeatureSectionFeatureListFilter>;
+};
+
+export type DocsBodyFilter = {
+  Callout?: InputMaybe<DocsBodyCalloutFilter>;
+  Button?: InputMaybe<DocsBodyButtonFilter>;
+  VideoPlayer?: InputMaybe<DocsBodyVideoPlayerFilter>;
+  Hero?: InputMaybe<DocsBodyHeroFilter>;
+  FeatureSection?: InputMaybe<DocsBodyFeatureSectionFilter>;
+};
+
+export type DocsFilter = {
+  title?: InputMaybe<StringFilter>;
+  section?: InputMaybe<StringFilter>;
+  body?: InputMaybe<DocsBodyFilter>;
 };
 
 export type DocsConnectionEdges = {
@@ -246,6 +313,7 @@ export type DocsConnectionQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocsFilter>;
 }>;
 
 
@@ -277,13 +345,14 @@ export const DocsDocument = gql`
 }
     ${DocsPartsFragmentDoc}`;
 export const DocsConnectionDocument = gql`
-    query docsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+    query docsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsFilter) {
   docsConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
+    filter: $filter
   ) {
     totalCount
     edges {
@@ -328,17 +397,10 @@ const generateRequester = (client: TinaClient) => {
     options?: any,
     client
   ) => Promise<any> = async (doc, vars, _options) => {
-    let data = {};
-    try {
-      data = await client.request({
-        query: doc,
-        variables: vars,
-      });
-    } catch (e) {
-      // swallow errors related to document creation
-      console.warn("Warning: There was an error when fetching data");
-      console.warn(e);
-    }
+    const data = await client.request({
+      query: doc,
+      variables: vars,
+    });
 
     return { data: data?.data, query: doc, variables: vars || {} };
   };
