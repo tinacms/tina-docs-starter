@@ -298,6 +298,13 @@ export type DocsMutation = {
   body?: InputMaybe<Scalars['JSON']>;
 };
 
+export type DocumentQueryQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type DocumentQueryQuery = { __typename?: 'Query', docs: { __typename?: 'Docs', title?: string | null | undefined, body?: any | null | undefined }, docsConnection: { __typename?: 'DocsConnection', edges?: Array<{ __typename?: 'DocsConnectionEdges', node?: { __typename?: 'Docs', title?: string | null | undefined, section?: string | null | undefined, _sys: { __typename?: 'SystemInfo', filename: string, collection: { __typename?: 'Collection', name: string } } } | null | undefined } | null | undefined> | null | undefined } };
+
 export type DocsPartsFragment = { __typename?: 'Docs', title?: string | null | undefined, section?: string | null | undefined, body?: any | null | undefined };
 
 export type DocsQueryVariables = Exact<{
@@ -324,6 +331,28 @@ export const DocsPartsFragmentDoc = gql`
   title
   section
   body
+}
+    `;
+export const DocumentQueryDocument = gql`
+    query DocumentQuery($relativePath: String!) {
+  docs(relativePath: $relativePath) {
+    title
+    body
+  }
+  docsConnection {
+    edges {
+      node {
+        title
+        section
+        _sys {
+          filename
+          collection {
+            name
+          }
+        }
+      }
+    }
+  }
 }
     `;
 export const DocsDocument = gql`
@@ -377,7 +406,10 @@ export const DocsConnectionDocument = gql`
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
-      docs(variables: DocsQueryVariables, options?: C): Promise<{data: DocsQuery, variables: DocsQueryVariables, query: string}> {
+      DocumentQuery(variables: DocumentQueryQueryVariables, options?: C): Promise<{data: DocumentQueryQuery, variables: DocumentQueryQueryVariables, query: string}> {
+        return requester<{data: DocumentQueryQuery, variables: DocumentQueryQueryVariables, query: string}, DocumentQueryQueryVariables>(DocumentQueryDocument, variables, options);
+      },
+    docs(variables: DocsQueryVariables, options?: C): Promise<{data: DocsQuery, variables: DocsQueryVariables, query: string}> {
         return requester<{data: DocsQuery, variables: DocsQueryVariables, query: string}, DocsQueryVariables>(DocsDocument, variables, options);
       },
     docsConnection(variables?: DocsConnectionQueryVariables, options?: C): Promise<{data: DocsConnectionQuery, variables: DocsConnectionQueryVariables, query: string}> {
