@@ -1,4 +1,4 @@
-import { defineConfig, defineSchema } from "tinacms";
+import { defineConfig, defineSchema, RouteMappingPlugin } from "tinacms";
 
 const schema = defineSchema({
   config: {
