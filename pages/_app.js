@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-import { TinaEditProvider } from "tinacms/dist/edit-state";
 import {
   createGlobalStyle,
   ThemeProvider,
