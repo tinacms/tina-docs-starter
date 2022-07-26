@@ -15,7 +15,21 @@ This Next.js starter is powered by TinaCMS and based upon [Smooth Doc](https://g
 - Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), Yarn installed for local development.
 - A [TinaCMS](https://app.tina.io) account for live editing.
 
-### Using Starter Locally
+## Local Development
+
+Install the project's dependencies:
+
+```
+yarn install
+```
+
+Run the project locally:
+
+```
+yarn dev
+```
+
+### Building the Starter Locally (Using the hosted content API)
 
 Replace the `.env.local.example`, with `.env.local`
 
@@ -25,16 +39,10 @@ TINA_TOKEN=<get this from the project you create at app.tina.io>
 NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
 ```
 
-Install the project's dependencies:
+Build the project:
 
 ```bash
-yarn install
-```
-
-Run the project locally:
-
-```bash
-yarn dev
+yarn build
 ```
 
 ### Local URLs
