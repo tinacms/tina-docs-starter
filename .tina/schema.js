@@ -2,13 +2,12 @@ import { defineConfig, defineSchema } from "tinacms";
 
 const schema = defineSchema({
   config: {
-    clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID! || "xxx",
+    clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
     branch:
       process.env.NEXT_PUBLIC_TINA_BRANCH ||
       process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
-      process.env.HEAD ||
-      "main",
-    token: process.env.NEXT_PUBLIC_TINA_TOKEN! || "xxx",
+      process.env.HEAD,
+    token: process.env.NEXT_PUBLIC_TINA_TOKEN,
     media: {
       tina: {
         mediaRoot: "images",
