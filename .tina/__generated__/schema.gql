@@ -49,7 +49,11 @@ type Query {
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
   docs(relativePath: String): Docs!
-  docsConnection(before: String, after: String, first: Float, last: Float, sort: String): DocsConnection!
+  docsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocsFilter): DocsConnection!
+}
+
+input DocumentFilter {
+  docs: DocsFilter
 }
 
 type DocumentConnectionEdges {
@@ -72,7 +76,7 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float, sort: String): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
 }
 
 union DocumentNode = Docs
@@ -84,6 +88,67 @@ type Docs implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input DocsBodyCalloutFilter {
+  type: StringFilter
+  text: StringFilter
+}
+
+input DocsBodyButtonFilter {
+  type: StringFilter
+  text: StringFilter
+  url: StringFilter
+}
+
+input DocsBodyVideoPlayerFilter {
+  url: StringFilter
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input DocsBodyHeroFilter {
+  backgroundImageUrl: ImageFilter
+  slogan: StringFilter
+  teaser: StringFilter
+  btnUrl: StringFilter
+  btnTxt: StringFilter
+}
+
+input DocsBodyFeatureSectionFeatureListFilter {
+  image: ImageFilter
+  title: StringFilter
+  desc: StringFilter
+}
+
+input DocsBodyFeatureSectionFilter {
+  featureList: DocsBodyFeatureSectionFeatureListFilter
+}
+
+input DocsBodyFilter {
+  Callout: DocsBodyCalloutFilter
+  Button: DocsBodyButtonFilter
+  VideoPlayer: DocsBodyVideoPlayerFilter
+  Hero: DocsBodyHeroFilter
+  FeatureSection: DocsBodyFeatureSectionFilter
+}
+
+input DocsFilter {
+  title: StringFilter
+  section: StringFilter
+  body: DocsBodyFilter
 }
 
 type DocsConnectionEdges {
