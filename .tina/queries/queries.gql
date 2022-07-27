@@ -1,4 +1,4 @@
-query DocumentQuery($relativePath: String!) {
+query documentQuery($relativePath: String!) {
   docs(relativePath: $relativePath) {
     title
     body
