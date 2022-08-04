@@ -1433,7 +1433,7 @@
   resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.3.tgz#92d7b5a055fb37528ab72e3a9bb0d89b7fa766dd"
   integrity sha512-vucKZyi2Wj83tGU3VBd/mwlgbmgTXclps6/slOPyEzJUH0Sl31vmXs3ATCG0jeIpp4Tu6IBVCVPlmvGcNpE9OQ==
 
-"@tinacms/cli@latest":
+"@tinacms/cli@^0.61.0":
   version "0.61.0"
   resolved "https://registry.yarnpkg.com/@tinacms/cli/-/cli-0.61.0.tgz#548ac03ac582dfaf7bd278906b5c480d6421e510"
   integrity sha512-he3dBYECy9tF7Awx0dkdXFstrJQp4FHQSiQBwAIxbGo//f5DqtTWSH0L9NH/XeBLMIm/E0PmtZeYdMd8LVmJQQ==
@@ -7853,7 +7853,7 @@ test-exclude@^6.0.0:
     glob "^7.1.4"
     minimatch "^3.0.4"
 
-tinacms@latest:
+tinacms@^0.68.14:
   version "0.68.14"
   resolved "https://registry.yarnpkg.com/tinacms/-/tinacms-0.68.14.tgz#877256843d37a177a43b7531afa966119737969c"
   integrity sha512-o+jOEvzuVZ9FjL1O+vV/EgxypAfe03/gwn/hQWB0sCVpBkMzN0JUa7fwcTlGZrK+91wXPG4qQ0VaF2PnBTuThQ==
