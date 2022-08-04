@@ -1,5 +1,4 @@
 import DocLayout from "../../components/DocLayout";
-import { staticRequest, gql } from "tinacms";
 import { sideMenuItems } from "../../utils/mdxUtils";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Button } from "../../components";
@@ -9,29 +8,7 @@ import Callout from "../../blocks/callout-block";
 import ReactPlayer from "react-player/lazy";
 import Page404 from "../404.js";
 import { useTina } from "tinacms/dist/edit-state";
-
-const query = gql`
-  query DocumentQuery($relativePath: String!) {
-    docs(relativePath: $relativePath) {
-      title
-      body
-    }
-    docsConnection {
-      edges {
-        node {
-          title
-          section
-          _sys {
-            filename
-            collection {
-              name
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import { client } from "../../.tina/__generated__/client";
 
 const components = {
   Callout: (props) => {
@@ -57,7 +34,7 @@ const components = {
 
 function DocPage(props) {
   const { data } = useTina({
-    query,
+    query: props.query,
     variables: props.variables,
     data: props.data,
   });
@@ -76,43 +53,21 @@ function DocPage(props) {
 export default DocPage;
 
 export const getStaticProps = async ({ params }) => {
-  const variables = { relativePath: `${params.filename}.mdx` };
-
-  let data = {};
-  try {
-    data = await staticRequest({
-      query,
-      variables,
-    });
-  } catch (error) {
-    // swallow errors related to document creation
-  }
-
+  const { data, query, variables } = await client.queries.documentQuery({
+    relativePath: `${params.filename}.mdx`,
+  });
   return {
     props: {
       variables,
       data,
+      query,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const docsListData = await staticRequest({
-    query: `#graphql
-      {
-        docsConnection {
-          edges {
-            node {
-              _sys {
-                filename
-              }
-            }
-          }
-        }
-      }
-    `,
-    variables: {},
-  });
+  const docsListData = await client.queries.docsConnection({});
+
   return {
     paths:
       docsListData?.docsConnection?.edges?.map((doc) => ({

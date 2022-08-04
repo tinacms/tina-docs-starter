@@ -15,13 +15,14 @@ query docs($relativePath: String!) {
   }
 }
 
-query docsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String) {
+query docsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DocsFilter) {
   docsConnection(
     before: $before
     after: $after
     first: $first
     last: $last
     sort: $sort
+    filter: $filter
   ) {
     totalCount
     edges {

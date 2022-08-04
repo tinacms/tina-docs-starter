@@ -1,0 +1,20 @@
+query documentQuery($relativePath: String!) {
+  docs(relativePath: $relativePath) {
+    title
+    body
+  }
+  docsConnection {
+    edges {
+      node {
+        title
+        section
+        _sys {
+          filename
+          collection {
+            name
+          }
+        }
+      }
+    }
+  }
+}
