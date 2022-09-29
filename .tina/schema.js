@@ -22,6 +22,11 @@ const schema = defineSchema({
       format: "mdx",
       name: "docs",
       path: "docs",
+      ui: {
+        router: ({ document }) => {
+          return `/docs/${document._sys.filename}`;
+        },
+      },
       fields: [
         {
           type: "string",
@@ -201,16 +206,4 @@ export default schema;
 export const tinaConfig = defineConfig({
   client,
   schema,
-  cmsCallback: (cms) => {
-    const RouteMapping = new RouteMappingPlugin((collection, document) => {
-      if (["docs"].includes(collection.name)) {
-        return `/docs/${document._sys.filename}`;
-      }
-
-      return undefined;
-    });
-    cms.plugins.add(RouteMapping);
-
-    return cms;
-  },
 });
