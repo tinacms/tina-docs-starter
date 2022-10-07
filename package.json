@@ -16,7 +16,7 @@
     "next": "^12.3.1",
     "next-mdx-remote": "^4.1.0",
     "next-remote-watch": "1.0.0",
-    "next-tinacms-cloudinary": "^3.5.30",
+    "next-tinacms-cloudinary": "^3.5.31",
     "polished": "^4.1.2",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",
@@ -30,10 +30,10 @@
     "remark": "13.0.0",
     "remark-html": "^15.0.1",
     "styled-components": "^5.3.3",
-    "tinacms": "^0.69.13"
+    "tinacms": "^0.69.16"
   },
   "devDependencies": {
-    "@tinacms/cli": "^0.61.19",
+    "@tinacms/cli": "^0.61.22",
     "babel-plugin-styled-components": "^1.12.0",
     "github-slugger": "^1.3.0",
     "mdast-util-to-string": "^2.0.0",
