@@ -32,6 +32,7 @@ query docsConnection($before: String, $after: String, $first: Float, $last: Floa
     }
     totalCount
     edges {
+      cursor
       node {
         ... on Document {
           _sys {

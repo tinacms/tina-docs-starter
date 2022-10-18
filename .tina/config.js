@@ -1,21 +1,6 @@
-import { defineConfig, defineSchema, RouteMappingPlugin } from "tinacms";
-import { client } from "./__generated__/client";
+import { defineStaticConfig } from "tinacms";
 
-const schema = defineSchema({
-  config: {
-    clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-    branch:
-      process.env.NEXT_PUBLIC_TINA_BRANCH ||
-      process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
-      process.env.HEAD,
-    token: process.env.TINA_TOKEN,
-    media: {
-      tina: {
-        mediaRoot: "images",
-        publicFolder: "public",
-      },
-    },
-  },
+const schema = {
   collections: [
     {
       label: "Documentation",
@@ -192,25 +177,38 @@ const schema = defineSchema({
           isBody: true,
         },
       ],
+      ui: {
+        router: ({ document, collection }) => {
+          if (["docs"].includes(collection.name)) {
+            return `/docs/${document._sys.filename}`;
+          }
+    
+          return undefined;
+        },
+      },
     },
   ],
-});
+};
 
-export default schema;
 
-export const tinaConfig = defineConfig({
-  client,
-  schema,
-  cmsCallback: (cms) => {
-    const RouteMapping = new RouteMappingPlugin((collection, document) => {
-      if (["docs"].includes(collection.name)) {
-        return `/docs/${document._sys.filename}`;
-      }
-
-      return undefined;
-    });
-    cms.plugins.add(RouteMapping);
-
-    return cms;
+export const config = defineStaticConfig({
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  branch:
+    process.env.NEXT_PUBLIC_TINA_BRANCH || // custom branch env override
+    process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || // Vercel branch env
+    process.env.HEAD, // Netlify branch env
+  token: process.env.TINA_TOKEN,
+  media: {
+    tina: {
+      publicFolder: "public",
+      mediaRoot: "images",
+    },
   },
+  build: {
+    publicFolder: "public", // The public asset folder for your framework
+    outputFolder: "admin", // within the public folder
+  },
+  schema,
 });
+
+export default config;
