@@ -10,7 +10,6 @@ import { theme } from "../config/theme";
 const GlobalStyle = createGlobalStyle`
   ${th("global")}
 `;
-import TinaProvider from "../.tina/components/TinaDynamicProvider";
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -18,9 +17,7 @@ const App = ({ Component, pageProps }) => {
       <ColorModeProvider>
         <Preflight />
         <GlobalStyle />
-        <TinaProvider>
-          <Component {...pageProps} />
-        </TinaProvider>
+        <Component {...pageProps} />
       </ColorModeProvider>
     </ThemeProvider>
   );

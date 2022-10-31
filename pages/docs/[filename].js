@@ -7,7 +7,7 @@ import HeroBlock from "../../blocks/hero-block";
 import Callout from "../../blocks/callout-block";
 import ReactPlayer from "react-player/lazy";
 import Page404 from "../404.js";
-import { useTina } from "tinacms/dist/edit-state";
+import { useTina } from "tinacms/dist/react";
 import { client } from "../../.tina/__generated__/client";
 
 const components = {
