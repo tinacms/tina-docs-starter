@@ -1636,10 +1636,10 @@
     webfontloader "1.6.28"
     xstate "4.32.1"
 
-"@tinacms/auth@^0.50.4":
-  version "0.50.4"
-  resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.4.tgz#b12883af628b8c19cab50552e99b564f7238c46e"
-  integrity sha512-Ls7I+y5Dnnb5nlPCaOCAkzOpyYn+DyFv1j3ymjE0BkgKE/xi4rmTibYJZ5UAYPN9u5+EmQPHenVBbQOj9Ik+8A==
+"@tinacms/auth@^0.50.5":
+  version "0.50.5"
+  resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.5.tgz#50950c8c5384dd6cdab4bcadd061815642c736fb"
+  integrity sha512-cXOLV3crifB4+qNO3XNWqpNOYjLwrfa1VVGbRYA67AvRrOrfS7qai0JhMjHzFbTlJW3Fdm46POlepOEStjn5mw==
 
 "@tinacms/cli@^0.62.1":
   version "0.62.1"
