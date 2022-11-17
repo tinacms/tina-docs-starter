@@ -30,7 +30,7 @@
     "remark": "13.0.0",
     "remark-html": "13.0.1",
     "styled-components": "^5.3.3",
-    "tinacms": "^1.0.0"
+    "tinacms": "^1.0.1"
   },
   "devDependencies": {
     "@tinacms/cli": "^1.0.0",
