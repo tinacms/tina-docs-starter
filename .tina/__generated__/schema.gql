@@ -17,6 +17,11 @@ type SystemInfo {
   collection: Collection!
 }
 
+type Folder {
+  name: String!
+  path: String!
+}
+
 type PageInfo {
   hasPreviousPage: Boolean!
   hasNextPage: Boolean!
@@ -76,10 +81,10 @@ type Collection {
   matches: String
   templates: [JSON]
   fields: [JSON]
-  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
+  documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Docs
+union DocumentNode = Docs | Folder
 
 type Docs implements Node & Document {
   title: String
@@ -164,11 +169,16 @@ type DocsConnection implements Connection {
 
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
-  updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   updateDocs(relativePath: String!, params: DocsMutation!): Docs!
   createDocs(relativePath: String!, params: DocsMutation!): Docs!
+}
+
+input DocumentUpdateMutation {
+  docs: DocsMutation
+  relativePath: String
 }
 
 input DocumentMutation {
@@ -185,4 +195,3 @@ schema {
   query: Query
   mutation: Mutation
 }
-  
