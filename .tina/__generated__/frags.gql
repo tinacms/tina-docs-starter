@@ -1,4 +1,5 @@
 fragment DocsParts on Docs {
+  __typename
   title
   section
   body

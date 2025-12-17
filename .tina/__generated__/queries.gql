@@ -4,6 +4,7 @@ query docs($relativePath: String!) {
       _sys {
         filename
         basename
+        hasReferences
         breadcrumbs
         path
         relativePath
@@ -38,6 +39,7 @@ query docsConnection($before: String, $after: String, $first: Float, $last: Floa
           _sys {
             filename
             basename
+            hasReferences
             breadcrumbs
             path
             relativePath

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { x, css, up, down, th, useUp } from '@xstyled/styled-components'
-import { useDialogState, Dialog, DialogDisclosure } from 'reakit/Dialog'
-import { Portal } from 'reakit/Portal'
+import * as Ariakit from '@ariakit/react'
 import { VscChevronUp } from 'react-icons/vsc'
 import { RiPencilLine } from 'react-icons/ri'
 import { ScreenContainer } from './ScreenContainer'
@@ -141,18 +140,16 @@ const MenuButton = styled.button`
 `
 
 function MobileSidebar({ children }) {
-  const dialog = useDialogState({ animated: true })
+  const dialog = Ariakit.useDialogStore({ animated: true })
   return (
     <>
-      <Dialog {...dialog} as={SidebarDialog}>
+      <Ariakit.Dialog store={dialog} backdrop={<SidebarDialog />}>
         {children}
-      </Dialog>
-      <Portal>
-        <DialogDisclosure {...dialog} as={MenuButton}>
-          <VscChevronUp />
-          <VscChevronUp />
-        </DialogDisclosure>
-      </Portal>
+      </Ariakit.Dialog>
+      <Ariakit.DialogDisclosure store={dialog} render={<MenuButton />}>
+        <VscChevronUp />
+        <VscChevronUp />
+      </Ariakit.DialogDisclosure>
     </>
   )
 }
@@ -180,8 +177,14 @@ function PrevNextLinks(props) {
 }
 
 export default function DocLayout({ children, tableOfContents, editLink, navGroups, ...props }) {
+  const [isMounted, setIsMounted] = React.useState(false)
   const upMd = useUp('md')
   const sideNav = { navGroups }
+
+  React.useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   return (
     <PageLayout {...props}>
       <ScreenContainer px={0}>
@@ -190,7 +193,7 @@ export default function DocLayout({ children, tableOfContents, editLink, navGrou
             <SideNav {...sideNav} />
           </SidebarSticky>
           <div className="sidebar-container">
-            {!upMd && (
+            {isMounted && !upMd && (
               <MobileSidebar>
                 <SideNav {...sideNav} />
               </MobileSidebar>

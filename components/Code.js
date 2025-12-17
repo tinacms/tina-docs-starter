@@ -1,13 +1,12 @@
 import React from 'react'
 import styled, { useTheme, th, up, css } from '@xstyled/styled-components'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import { Highlight, themes } from 'prism-react-renderer'
 import {
   LiveProvider,
   LiveEditor,
   LiveError,
   LivePreview as BaseLivePreview,
 } from 'react-live'
-import { mdx } from '@mdx-js/react'
 
 const Pre = styled.pre`
   font-size: 15;
@@ -138,8 +137,8 @@ export function Code({ children, lang = 'markup', live, noInline }) {
     return (
       <LiveProvider
         code={children.trim()}
-        transformCode={(code) => `/* @jsx mdx */ ${importToRequire(code)}`}
-        scope={{ mdx, require: req }}
+        transformCode={(code) => importToRequire(code)}
+        scope={{ require: req }}
         language={lang}
         theme={prismTheme}
         noInline={noInline}
@@ -157,7 +156,6 @@ export function Code({ children, lang = 'markup', live, noInline }) {
   }
   return (
     <Highlight
-      {...defaultProps}
       code={children.trim()}
       language={lang}
       theme={prismTheme}
@@ -165,9 +163,9 @@ export function Code({ children, lang = 'markup', live, noInline }) {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Pre className={className} style={style}>
           {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
+            <div key={i} {...getLineProps({ line })}>
               {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
+                <span key={key} {...getTokenProps({ token })} />
               ))}
             </div>
           ))}

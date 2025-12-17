@@ -61,14 +61,12 @@ const NavGroupMenuItem = styled.li`
 `
 
 const NavLink = ({ children, href }) => {
-  const child = React.Children.only(children);
   const router = useRouter();
+  const isCurrent = trim(router.asPath) === trim(href);
   
   return (
-    <Link href={href}>
-      {React.cloneElement(child, {
-        "aria-current": trim(router.asPath) === trim(href) ? "page" : null
-      })}
+    <Link href={href} aria-current={isCurrent ? "page" : undefined}>
+      {children}
     </Link>
   );
 };
@@ -82,8 +80,8 @@ export default function SideNav({ navGroups }) {
           <NavGroupMenu>
             {navGroup.children.map((page) => (
               <NavGroupMenuItem key={page.title}>
-                <NavLink href={page.slug} >
-                  <a>{page.title}</a>
+                <NavLink href={page.slug}>
+                  {page.title}
                 </NavLink>
               </NavGroupMenuItem>
             ))}
