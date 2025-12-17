@@ -13,8 +13,8 @@ export function AppNav() {
         {(siteMetadata.navItems || []).map(
           ({ title, url }, index) => (
             <NavListText key={index} padding="0 36px" >
-              <Link href={url} passHref >
-                <NavLink >{title}</NavLink>
+              <Link href={url}>
+                <NavLink as="span">{title}</NavLink>
               </Link>
             </NavListText>
           ),
